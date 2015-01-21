@@ -40,7 +40,7 @@
             <TableColumn fx:id="tcMiercoles" prefWidth="100.0" text="Miercoles" />
             <TableColumn fx:id="tcJueves" prefWidth="90.0" text="Jueves" />
             <TableColumn fx:id="tcViernes" prefWidth="90.0" text="Viernes" />
-          </columns>
+          </columns>          
         </TableView>
         <Button fx:id="btAM" layoutX="25.0" layoutY="230.0" mnemonicParsing="false" onAction="#actionTurnoAM" text="">
             <graphic>

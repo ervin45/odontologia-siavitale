@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import data.CitaOdontologica;
 import data.Personal;
 import eu.schudt.javafx.controls.calendar.DatePicker;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -26,28 +27,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
 
 public class CitasOdontologicasController{	
 			
 	@FXML
-	private TableView tvCronograma;
+	private TableView<CitaOdontologica> tvCronograma;
 	
 	@FXML
-	private TableColumn tcLunes;	
+	private TableColumn<CitaOdontologica, String> tcLunes;	
 	
 	@FXML
-	private TableColumn tcMartes;
+	private TableColumn<CitaOdontologica, String> tcMartes;
 	
 	@FXML	
-	private TableColumn tcMiercoles;
+	private TableColumn<CitaOdontologica, String> tcMiercoles;
 	
 	@FXML
-	private TableColumn tcJueves;
+	private TableColumn<CitaOdontologica, String> tcJueves;
 	
 	@FXML
-	private TableColumn tcViernes;
+	private TableColumn<CitaOdontologica, String> tcViernes;
 	
 	@FXML
 	private TableView tvHorario;
@@ -77,14 +81,17 @@ public class CitasOdontologicasController{
 	private ObservableList<String> opcionDoctor = FXCollections.observableArrayList();	
 	
 		
-	private List<String> fechasSemana = new LinkedList<>(); 
+	private List<String> fechasSemana = new LinkedList<>();
+	private List<String> diasSemana = new LinkedList<>(); 
+	
+	private boolean turno=false;
 
 	public CitasOdontologicasController(){			
 	}
 		
 	@FXML
 	private void initialize(){		
-		
+		tvCronograma.setEditable(true);
 		dpFecha = new DatePicker();		
 		dpFecha.setDateFormat( new SimpleDateFormat("dd-MM-yyyy"));
 		dpFecha.getCalendarView().setShowTodayButton(false);
@@ -137,11 +144,13 @@ public class CitasOdontologicasController{
 	@FXML
 	private void actionTurnoAM(){	
 		horaList.clear();cargarHorasAM();
+		turno=false;
 	}
 	
 	@FXML
 	private void actionTurnoPM(){
-		horaList.clear();cargarHorasPM();		
+		horaList.clear();cargarHorasPM();
+		turno=true;
 	}
 	
 	@FXML
@@ -208,16 +217,47 @@ public class CitasOdontologicasController{
 		}catch (HibernateException e1){
 			e1.printStackTrace();
 		}
-		Iterator<String> iterator = fechasSemana.iterator();
 		
 		for (int p=0;p<citaList.size();p++){
-			System.out.println(""+citaList.get(p).getObservacion()+" // "+citaList.get(p).getFecha().toString());
+			System.out.format(citaList.get(p).getObservacion()+" // "+citaList.get(p).getFecha().toString()+"%n");
 			String[] partido=citaList.get(p).getFecha().toString().split(" ");
-			System.out.println(partido[0]);System.out.println(partido[1]);
-			System.out.println("**"+fechasSemana.get(p));
-						
+			System.out.println("fecha: "+partido[0]);
+			System.out.println("hora: "+partido[1]);
+			
+			for (int i=0;i<fechasSemana.size();i++){
+				System.out.println(""+fechasSemana.get(i));
+				if (partido[0].compareTo(fechasSemana.get(i))==0){
+					switch(i){
+						case 0: System.out.println("cita para lunes: "+citaList.get(p).getPaciente().getPersona().getApellidos());							
+								final String h= citaList.get(p).getPaciente().getPersona().getApellidos();
+								tcLunes.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CitaOdontologica,String>, ObservableValue<String>>() {			
+									@Override
+									public ObservableValue<String> call(CellDataFeatures<CitaOdontologica, String> arg0) {				
+										System.out.println("entre entre entreeeee");
+										return new SimpleStringProperty(""+h);
+								}});
+								
+//								tvCronograma.getColumns().addAll(tcLunes);
+								break;
+						case 1: System.out.println("cita para martes");break;
+						case 2: System.out.println("cita para miercoles");break;
+						case 3: System.out.println("cita para jueves");break;
+						case 4: System.out.println("cita para viernes");break;
+					}
+					break;
+				}
+			}System.out.println("");
 		}
-		System.out.println("cantidad de citas "+citaList.size());		
+		
+		System.out.format("%nlo que esta en la List de las fechas de la semana");
+		for (int i=0;i<fechasSemana.size();i++){
+			System.out.println(""+fechasSemana.get(i));
+		}
+		System.out.println("cantidad de citas "+citaList.size());	
+//		if (turno)
+//			System.out.println("turno tarde");
+//		else
+//			System.out.println("turno mañana");
 	}
 	
 	private void calculofecha(int limite,int diaSelec){
@@ -226,7 +266,7 @@ public class CitasOdontologicasController{
 			calendar.add(calendar.DATE,1);
 			System.out.println("aja: "+calendar.getTime());
 			if (diaSelec==calendar.get(Calendar.DAY_OF_WEEK))
-				System.out.println("es el dia que selecioneee");
+				System.out.println("es el dia que seleccioneee");
 			String dia="", mes="" ,anho="" ;
 			
 			int temp=calendar.get(Calendar.DAY_OF_WEEK);
@@ -240,7 +280,7 @@ public class CitasOdontologicasController{
 			
 			switch(temp){
 				case 2: tcLunes.setText("Lunes "+dia);
-						fechasSemana.add(calendar.get(Calendar.YEAR)+"-"+mes+"-"+dia);						
+						fechasSemana.add(calendar.get(Calendar.YEAR)+"-"+mes+"-"+dia);	
 						break;
 				case 3: tcMartes.setText("Martes "+dia);
 						fechasSemana.add(calendar.get(Calendar.YEAR)+"-"+mes+"-"+dia);
