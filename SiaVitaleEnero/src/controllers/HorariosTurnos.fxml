@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane prefHeight="550.0" prefWidth="580.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HorariosTurnosController">
+	<children>
+		<TabPane layoutX="0.0" layoutY="71.0" prefHeight="650.0" prefWidth="581.0" side="TOP" tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+	 			<Tab text="Horario">
+	 				<content>	
+	 					<Pane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="700.0" styleClass="background0">
+							<children>
+						        <TableView fx:id="TablaHorario" editable="true" layoutX="130.0" layoutY="70.0" prefHeight="193.0" prefWidth="260.0">
+						          <columns>
+						            <TableColumn fx:id="ColHoraInicio" prefWidth="150.0" text="Hora Inicio" />
+						            <TableColumn fx:id="ColHoraFin" prefWidth="100.0" text="Hora Fin" />						                    
+						          </columns>
+								</TableView>
+								<Button fx:id="btAgregarHorario" layoutX="410.0" layoutY="70.0" mnemonicParsing="false" onAction="#actionAgregarHorario" text="" >
+						            <graphic>
+						                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+						                  <image>
+						                    <Image url="@../Black/icon-plus-sign.png" />
+						                  </image>
+						                </ImageView>
+						            </graphic>
+						    	</Button>
+						        <Button fx:id="btEliminarHorario" layoutX="410.0" layoutY="120.0" mnemonicParsing="false" text="" onAction="#actionEliminarHorario" disable="true">
+						            <graphic>
+						                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+						                  <image>
+						                    <Image url="@../Black/icon-minus-sign.png" />
+						                  </image>
+						                </ImageView>
+						            </graphic>  	
+								 </Button>
+							</children>	
+						</Pane>
+					</content>
+				</Tab>
+				<Tab text="Turno">
+					<content>					
+						<Pane layoutX="1.0" prefHeight="600.0" prefWidth="850.0">
+							<children>
+								<SplitPane dividerPositions="0.20" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="690.0" prefWidth="850.0">
+									<items>										
+										<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" opacity="1.0" prefHeight="50.0" prefWidth="100" styleClass="background0">
+											<children>
+												<TableView fx:id="TablaTurno" editable="true" layoutX="10.0" layoutY="40.0" prefHeight="193.0" prefWidth="120.0" >
+								                  <columns>
+								                    <TableColumn fx:id="ColTurno" prefWidth="100.0" text="Turno" />
+								                  </columns>
+								                </TableView>
+								                <Button fx:id="btAgregarTurno" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#actionAgregarTurno" text="" >
+										            <graphic>
+										                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+										                  <image>
+										                    <Image url="@../Black/icon-plus-sign.png" />
+										                  </image>
+										                </ImageView>
+										            </graphic>
+										    	</Button>
+										        <Button fx:id="btEliminarTurno" layoutX="80.0" layoutY="10.0" mnemonicParsing="false" text="" onAction="#actionEliminarTurno" disable="true">
+										            <graphic>
+										                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+										                  <image>
+										                    <Image url="@../Black/icon-minus-sign.png" />
+										                  </image>
+										                </ImageView>
+										            </graphic>  	
+												 </Button>	
+											</children>
+										</AnchorPane>
+										<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="700.0" styleClass="background0">
+											<children>
+												<TableView fx:id="TablaHoraTurno" editable="true" layoutX="60.0" layoutY="70.0" prefHeight="193.0" prefWidth="150.0">
+										          <columns>						          
+										            <TableColumn fx:id="ColHorarioTurno" prefWidth="150.0" text="Horario" />				                    
+										          </columns>
+												</TableView>
+												<Label fx:id="mensaje" text="Seleccione horario: " layoutX="20.0" layoutY="30.0" visible="false"/>
+												<ChoiceBox fx:id="cbHorario" disable="true" visible="false" layoutX="136.0" layoutY="30.0" styleClass="colorletra">
+											      <items>
+											        <FXCollections fx:factory="observableArrayList">
+											            <String fx:value="" />
+          												<String fx:value="" />
+											        </FXCollections>
+											      </items>
+											    </ChoiceBox>												
+												<Button fx:id="btAgregarHoraTurno" layoutX="230.0" layoutY="70.0" mnemonicParsing="false" onAction="#actionAgregarHoraTurno" text="" >
+										            <graphic>
+										                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+										                  <image>
+										                    <Image url="@../Black/icon-plus-sign.png" />
+										                  </image>
+										                </ImageView>
+										            </graphic>
+										    	</Button>
+										        <Button fx:id="btEliminarHoraTurno" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" text="" onAction="#actionEliminarHoraTurno" disable="true">
+										            <graphic>
+										                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+										                  <image>
+										                    <Image url="@../Black/icon-minus-sign.png" />
+										                  </image>
+										                </ImageView>
+										            </graphic>  	
+												 </Button>	
+												 <Button fx:id="btGuardarHoraTurno" disable="true" visible="false" layoutX="250.0" layoutY="30.0" mnemonicParsing="false" onAction="#actionGuardarHoraTurno" >
+						                           <graphic>
+						                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+						                                 <image>
+						                                    <Image url="@../Black/icon-check.png" />
+						                                 </image>
+						                              </ImageView>
+						                           </graphic>
+						                        </Button>										 
+											</children>
+										</AnchorPane>
+									</items>
+								</SplitPane>
+							</children>
+						</Pane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>			
+	</children>
+	<stylesheets>
+		<URL value="@DarkTheme.css" />
+	</stylesheets>
+</AnchorPane>					
+	

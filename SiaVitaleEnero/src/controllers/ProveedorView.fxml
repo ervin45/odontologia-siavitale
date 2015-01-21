@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="509.0" prefWidth="876.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProveedorController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <ToolBar layoutY="0.0" AnchorPane.rightAnchor="419.0">
+      <items>
+        <Button fx:id="botonNuevo" mnemonicParsing="false" onAction="#clickbotonNuevo" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-plus-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonBorrar" mnemonicParsing="false" onAction="#clickbotonBorrar" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-minus-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonModifica" mnemonicParsing="false" onAction="#clickbotonModifica" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-edit.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonGuarda" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-ok-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonCancela" mnemonicParsing="false" onAction="#clickbotonCancela" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-remove-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonSalir" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-exit.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonBusca" text="" visible="false">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-search.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonPrimero" text="" visible="false">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-fastleft.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonAnterior" text="" visible="false">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-chevron-left.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonSiguiente" text="" visible="false">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-chevron-right.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonUltimo" text="" visible="false">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-fastright.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+      </items>
+    </ToolBar>
+    <Pane layoutX="1.0" layoutY="40.0" prefHeight="469.0" prefWidth="875.0">
+      <children>
+        <SplitPane dividerPositions="0.3325714285714286" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="469.0" prefWidth="875.0">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" opacity="1.0" prefHeight="401.0" prefWidth="262.0">
+              <children>
+                <TableView fx:id="Tabla" prefHeight="401.0" prefWidth="238.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <columns>
+                    <TableColumn fx:id="ColRIF" prefWidth="75.0" text="RIF" />
+                    <TableColumn fx:id="ColRazon" prefWidth="200.0" text="Razón Social" />
+                  </columns>
+                </TableView>
+              </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="581.0" styleClass="background2">
+              <children>
+                <Label layoutX="14.0" layoutY="28.0" styleClass="label-h1" text="Proveedor" />
+                <TabPane layoutX="0.0" layoutY="71.0" prefHeight="396.0" prefWidth="581.0" tabClosingPolicy="UNAVAILABLE">
+                  <tabs>
+                    <Tab text="Datos Empresa">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="581.0" styleClass="background0">
+                          <children>
+                            <Label id="LbCodigoCosa" layoutX="24.0" layoutY="13.0" prefWidth="24.0" text="RIF:" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="43.0" text="Razón Social:" />
+                            <TextField fx:id="tfRIF" layoutX="121.0" layoutY="10.0" prefWidth="111.0" />
+                            <TextField id="tfDescripcion" fx:id="tfRazon" layoutX="121.0" layoutY="40.0" prefWidth="430.0" />
+                            <TextField id="tfDescripcion" fx:id="tfCalle" layoutX="121.0" layoutY="99.0" prefWidth="430.0" />
+                            <TextField id="tfDescripcion" fx:id="tfEdificio" layoutX="121.0" layoutY="129.0" prefWidth="430.0" />
+                            <TextField id="tfDescripcion" fx:id="tfNumero" layoutX="121.0" layoutY="159.0" prefWidth="430.0" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="102.0" text="Calle o Avenida:" />
+                            <Label id="LbDescripcionCosa" layoutX="40.0" layoutY="73.0" text="Dirección Fiscal" />
+                            <ComboBox fx:id="cbEstado" layoutX="83.0" layoutY="226.0" prefHeight="21.0" prefWidth="190.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="132.0" text="Edificio o Casa:" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="162.0" text="Identificación:" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="226.0" text="Estado:" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="194.0" text="Sector:" />
+                            <TextField id="tfDescripcion" fx:id="tfSector" layoutX="121.0" layoutY="189.0" prefWidth="430.0" />
+                            <ComboBox fx:id="cbCiudad" layoutX="340.0" layoutY="226.0" prefHeight="21.0" prefWidth="190.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                            <Label id="LbDescripcionCosa" layoutX="291.0" layoutY="226.0" text="Ciudad:" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="259.0" text="Teléfono:" />
+                            <Label id="LbDescripcionCosa" layoutX="291.0" layoutY="259.0" text="Fax:" />
+                            <TextField id="tfRIF" fx:id="tfTelefono" layoutX="83.0" layoutY="256.0" prefWidth="165.0" />
+                            <TextField id="tfRIF" fx:id="tfFax" layoutX="320.0" layoutY="256.0" prefWidth="165.0" />
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </Tab>
+                    <Tab text="Información Contacto">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="background0">
+                          <children>
+                            <Label id="LbStatus" layoutX="26.0" layoutY="288.0" text="Status:" />
+                            <Label id="LbComentario" layoutX="27.0" layoutY="179.0" text="Comentario:" />
+                            <TextField fx:id="tfStatus" layoutX="123.0" layoutY="285.0" prefWidth="75.0" />
+                            <TextField fx:id="tfComentario" layoutX="138.0" layoutY="176.0" prefHeight="43.0" prefWidth="416.0" />
+                            <Label id="LbComentario" layoutX="27.0" layoutY="30.0" text="Persona Contacto:" />
+                            <TextField id="tfComentario" fx:id="tfContacto" layoutX="138.0" layoutY="27.0" prefWidth="416.0" />
+                            <Label id="LbComentario" layoutX="27.0" layoutY="60.0" text="Telefono Contacto:" />
+                            <TextField id="tfComentario" fx:id="tfTelContacto" layoutX="138.0" layoutY="57.0" prefWidth="264.0" />
+                            <Label id="LbComentario" layoutX="27.0" layoutY="90.0" text="e-mail:" />
+                            <TextField id="tfComentario" fx:id="tfEmail" layoutX="138.0" layoutY="87.0" prefWidth="416.0" />
+                            <Label id="LbComentario" layoutX="27.0" layoutY="120.0" text="Página Web:" />
+                            <TextField id="tfComentario" fx:id="tfWeb" layoutX="138.0" layoutY="117.0" prefWidth="416.0" />
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </Tab>
+                    <Tab text="Productos">
+                                 <content>
+                                    <AnchorPane prefHeight="346.0" prefWidth="581.0" styleClass="background0">
+                                       <children>
+                                          <Label layoutX="25.0" layoutY="18.0" text="Asociar Descripción General de Productos al Proveedor" />
+                                          <Label fx:id="lbProveedor" layoutX="25.0" layoutY="57.0" styleClass="label-bright" text="Label" />
+                                          <TableView fx:id="TablaDescriGral" layoutX="85.0" layoutY="136.0" prefHeight="200.0" prefWidth="411.0">
+                                            <columns>
+                                              <TableColumn fx:id="ColDescripcion" prefWidth="391.0" text="Descripcion General Asociada" />
+                                            </columns>
+                                          </TableView>
+                                          <ComboBox fx:id="cbDescriGral" layoutX="156.0" layoutY="90.0" prefHeight="25.0" prefWidth="302.0" />
+                                          <Label layoutX="27.0" layoutY="93.0" text="Descripción General:" />
+                                          <Button fx:id="botonmas" layoutX="470.0" layoutY="90.0" mnemonicParsing="false" onAction="#clickbotonmas">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Black/icon-plus-sign.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="botonmenos" layoutX="502.0" layoutY="184.0" mnemonicParsing="false" onAction="#clickbotonmenos">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../Black/icon-minus-sign.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </content></Tab>
+                  </tabs>
+                </TabPane>
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+</AnchorPane>

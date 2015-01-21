@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfiguraProductoController">
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+   <children>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab text="Marca">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="600.0" styleClass="background2">
+                     <children>
+                        <Label layoutX="22.0" layoutY="20.0" styleClass="label-header" text="Marcas de Productos" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="20.0" />
+                        <TableView fx:id="Tabla" layoutX="93.0" layoutY="201.0" prefHeight="183.0" prefWidth="411.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="190.0">
+                          <columns>
+                            <TableColumn fx:id="ColDescripcion" prefWidth="406.0" text="Descripción" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="53.0" layoutY="119.0" text="Descripción:" AnchorPane.leftAnchor="53.0" />
+                        <Label layoutX="53.0" layoutY="155.0" text="Observaciones:" AnchorPane.leftAnchor="53.0" />
+                        <TextField fx:id="tfDescripcion" layoutX="151.0" layoutY="114.0" prefHeight="28.0" prefWidth="229.0" AnchorPane.leftAnchor="151.0" />
+                        <TextField fx:id="tfComentario" layoutX="151.0" layoutY="150.0" prefHeight="28.0" prefWidth="379.0" AnchorPane.leftAnchor="151.0" />
+                        <ToolBar layoutX="280.0" layoutY="66.0" prefHeight="40.0" prefWidth="271.0" AnchorPane.rightAnchor="10.0">
+                          <items>
+                              <Button fx:id="btNuevo" mnemonicParsing="false" onAction="#clickbtNuevo">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-plus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBorra" mnemonicParsing="false" onAction="#clickbtBorra">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-minus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btEdita" mnemonicParsing="false" onAction="#clickbtEdita">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBusca" mnemonicParsing="false" onAction="#clickbtBusca">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btGuarda" mnemonicParsing="false" onAction="#clickbtGuarda">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-ok-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btCancela" mnemonicParsing="false" onAction="#clickbtCancela">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-remove-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                          </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Unidad de Medida">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="600.0" styleClass="background2">
+                     <children>
+                        <Label layoutX="30.0" layoutY="34.0" styleClass="label-header" text="Unidad de Medida" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                        <TableView fx:id="Tabla1" layoutX="97.0" layoutY="196.0" prefHeight="183.0" prefWidth="406.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="190.0">
+                           <columns>
+                              <TableColumn fx:id="ColDescripcion1" prefWidth="393.0" text="Descripción" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="53.0" layoutY="119.0" text="Descripción:" AnchorPane.leftAnchor="53.0" />
+                        <Label layoutX="53.0" layoutY="155.0" text="Observaciones:" AnchorPane.leftAnchor="53.0" />
+                        <TextField fx:id="tfDescripcion1" layoutX="151.0" layoutY="114.0" prefHeight="28.0" prefWidth="229.0" AnchorPane.leftAnchor="151.0" />
+                        <TextField fx:id="tfComentario1" layoutX="151.0" layoutY="150.0" prefHeight="28.0" prefWidth="379.0" AnchorPane.leftAnchor="151.0" />
+                        <ToolBar layoutX="280.0" layoutY="66.0" prefHeight="40.0" prefWidth="271.0" AnchorPane.rightAnchor="10.0">
+                           <items>
+                              <Button fx:id="btNuevo1" mnemonicParsing="false" onAction="#clickbtNuevo1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-plus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBorra1" mnemonicParsing="false" onAction="#clickbtBorra1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-minus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btEdita1" mnemonicParsing="false" onAction="#clickbtEdita1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBusca1" mnemonicParsing="false" onAction="#clickbtBusca1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btGuarda1" mnemonicParsing="false" onAction="#clickbtGuarda1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-ok-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btCancela1" mnemonicParsing="false" onAction="#clickbtCancela1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-remove-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab disable="true" text="Grupo">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="600.0" styleClass="background2">
+                     <children>
+                        <Label layoutX="30.0" layoutY="34.0" styleClass="label-header" text="Grupo de Productos" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                        <TableView fx:id="Tabla3" layoutX="110.0" layoutY="203.0" prefHeight="183.0" prefWidth="387.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="190.0">
+                           <columns>
+                              <TableColumn fx:id="ColDescripcion3" prefWidth="374.0" text="Descripción" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="53.0" layoutY="119.0" text="Descripción:" AnchorPane.leftAnchor="53.0" />
+                        <Label layoutX="53.0" layoutY="155.0" text="Observaciones:" AnchorPane.leftAnchor="53.0" />
+                        <TextField fx:id="tfDescripcion3" layoutX="151.0" layoutY="114.0" prefHeight="28.0" prefWidth="229.0" AnchorPane.leftAnchor="151.0" />
+                        <TextField fx:id="tfComentario3" layoutX="151.0" layoutY="150.0" prefHeight="28.0" prefWidth="379.0" AnchorPane.leftAnchor="151.0" />
+                        <ToolBar layoutX="280.0" layoutY="66.0" prefHeight="40.0" prefWidth="271.0" AnchorPane.rightAnchor="10.0">
+                           <items>
+                              <Button fx:id="btNuevo3" mnemonicParsing="false" onAction="#clickbtNuevo3">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-plus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBorra3" mnemonicParsing="false" onAction="#clickbtBorra3">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-minus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btEdita3" mnemonicParsing="false" onAction="#clickbtEdita3">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBusca3" mnemonicParsing="false" onAction="#clickbtBusca3">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btGuarda3" mnemonicParsing="false" onAction="#clickbtGuarda3">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-ok-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btCancela3" mnemonicParsing="false" onAction="#clickbtCancela3">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-remove-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

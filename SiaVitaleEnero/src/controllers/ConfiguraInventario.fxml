@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfiguraInventarioController">
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+   <children>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab text="Área">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="600.0" styleClass="background2">
+                     <children>
+                        <Label layoutX="22.0" layoutY="19.0" styleClass="label-header" text="Área de Inventario" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="19.0" />
+                        <TableView fx:id="Tabla" layoutX="31.0" layoutY="201.0" prefHeight="183.0" prefWidth="538.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="190.0">
+                          <columns>
+                            <TableColumn fx:id="ColDescripcion" prefWidth="403.0" text="Descripción" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="53.0" layoutY="119.0" text="Descripción:" AnchorPane.leftAnchor="53.0" />
+                        <Label layoutX="53.0" layoutY="155.0" text="Observaciones:" AnchorPane.leftAnchor="53.0" />
+                        <TextField fx:id="tfDescripcion" layoutX="151.0" layoutY="114.0" prefHeight="28.0" prefWidth="229.0" AnchorPane.leftAnchor="151.0" />
+                        <TextField fx:id="tfComentario" layoutX="151.0" layoutY="150.0" prefHeight="28.0" prefWidth="379.0" AnchorPane.leftAnchor="151.0" />
+                        <ToolBar layoutX="280.0" layoutY="66.0" prefHeight="40.0" prefWidth="271.0" AnchorPane.rightAnchor="10.0">
+                          <items>
+                              <Button fx:id="btNuevo" mnemonicParsing="false" onAction="#clickbtNuevo">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-plus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBorra" mnemonicParsing="false" onAction="#clickbtBorra">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-minus-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btEdita" mnemonicParsing="false" onAction="#clickbtEdita">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btBusca" mnemonicParsing="false" onAction="#clickbtBusca">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btGuarda" mnemonicParsing="false" onAction="#clickbtGuarda">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-ok-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btCancela" mnemonicParsing="false" onAction="#clickbtCancela">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Black/icon-remove-sign.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                          </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="..." />
+            <Tab text="..." />
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

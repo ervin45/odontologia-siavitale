@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="691.0" styleClass="background2" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>       
+            <Group id="Group" layoutX="17.0" layoutY="103.0">
+              <children>
+                <Label id="LbCodigoCosa" layoutX="0.0" layoutY="0.0" text="Código:" />
+                <Label id="LbDescripcionCosa" layoutX="0.0" layoutY="44.0" text="Descripción:" />         
+              </children>
+            </Group>
+            <ToolBar  layoutY="90.0" AnchorPane.rightAnchor="140.0">
+	        	<items>
+					<Button fx:id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonGuarda" text="" layoutX="0.0" layoutY="44.0">
+	                  <graphic>
+	                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+	                      <image>
+	                        <Image url="@../Black/icon-ok-sign.png" />
+	                      </image>
+	                    </ImageView>
+	                  </graphic>
+	                </Button>
+				</items>
+            </ToolBar> 
+            <Group id="Group2" layoutX="96.0" layoutY="100.0">
+              <children>
+                <TextField id="tfcodigo" fx:id="tfCodigo" layoutX="0.0" layoutY="0.0" prefWidth="111.0" />
+                <TextField fx:id="tfDescripcion" layoutX="0.0" layoutY="44.0" prefWidth="200.0" onKeyReleased="#teclados"/>
+				<ComboBox fx:id="cbedos" layoutX="180.0" layoutY="0.0" prefHeight="21.0" prefWidth="190.0" >
+                     <items>
+                       <FXCollections fx:factory="observableArrayList">
+                         <String fx:value="Hola" />
+                         <String fx:value="Item 2" />
+                         <String fx:value="Item 3" />
+                       </FXCollections>
+                     </items>
+                </ComboBox>	                          
+              </children>
+            </Group>
+            <TableView fx:id="Tabla" mouseTransparent="false" prefHeight="200.0" prefWidth="280.0" layoutX="350.0" layoutY="140.0"> 
+              <columns>
+                <TableColumn prefWidth="100.0" text="Código" fx:id="ColCodigo" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Nombre" fx:id="ColNombre" />
+              </columns>
+            </TableView>
+            <Label fx:id="titulo" layoutX="17.0" layoutY="35.0" styleClass="label-h1" text="Label" /> 
+            <Group id="Group3" layoutX="17.0" layoutY="253.0">
+              <children>
+                <Label id="LbMontoExento" layoutX="0.0" layoutY="0.0" text="Monto Exento:" />
+                <Label id="LbBaseImponible" layoutX="0.0" layoutY="44.0" text="Base Imponible:" />         
+                <Label id="LbIva" layoutX="0.0" layoutY="88.0" text="IVA:" />
+                <Label id="LbMontoTotal" layoutX="0.0" layoutY="132.0" text="Monto Total:" />
+              </children>
+            </Group>      
+            <Group id="Group4" layoutX="120.0" layoutY="253.0">
+              <children>
+                <TextField id="tfMontoExento" fx:id="tfMontoExento" layoutX="0.0" layoutY="0.0" prefWidth="150.0" onAction="#acciontextfield"/>
+                <TextField fx:id="tfBaseImponible" layoutX="0.0" layoutY="44.0" prefWidth="150.0" onAction="#acciontextfield" />
+				<TextField fx:id="tfIva" layoutX="0.0" layoutY="88.0" prefWidth="150.0" disable="true" text="0.00"/>     
+				<TextField fx:id="tfMontoTotal" layoutX="0.0" layoutY="132.0" prefWidth="150.0" disable="true" text="0.00"/>                     
+              </children>
+            </Group>   
+  </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+</AnchorPane>
+

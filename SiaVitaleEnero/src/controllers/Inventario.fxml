@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="803.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InventarioController">
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+   <children>
+      <TableView fx:id="TablaInventario" layoutX="32.0" layoutY="259.0" prefHeight="276.0" prefWidth="740.0">
+        <columns>
+          <TableColumn fx:id="ColItem" prefWidth="54.0" text="Item" />
+          <TableColumn fx:id="ColProducto" prefWidth="284.0" text="Producto / Marca" />
+            <TableColumn fx:id="ColCantidad" minWidth="0.0" prefWidth="61.0" text="Cant." />
+            <TableColumn fx:id="ColPrecio" minWidth="0.0" prefWidth="111.0" text="Precio Unit." />
+            <TableColumn fx:id="ColIva" prefWidth="102.0" text="I.V.A." />
+            <TableColumn fx:id="ColTotal" prefWidth="110.0" text="Total" />
+        </columns>
+      </TableView>
+      <ToolBar layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="776.0">
+        <items>
+          <Button fx:id="btNuevo" mnemonicParsing="false" onAction="#clickbtNuevo">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btBorrar" mnemonicParsing="false" onAction="#clickbtBorrar">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-minus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btEditar" mnemonicParsing="false" onAction="#clickbtEditar">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#clickbtGuardar">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-check.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#clickbtCancelar">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-remove.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btPrimero" mnemonicParsing="false" onAction="#clickbtPrimero">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-backward.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btAnterior" mnemonicParsing="false" onAction="#clickbtAnterior">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-arrow-left.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btSiguiente" mnemonicParsing="false" onAction="#clickbtSiguiente">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-arrow-right.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btUltimo" mnemonicParsing="false" onAction="#clickbtUltimo">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Black/icon-forward.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+        </items>
+      </ToolBar>
+      <TextField fx:id="tfCantidad" layoutX="165.0" layoutY="176.0" prefHeight="28.0" prefWidth="81.0" styleClass="text-field2" />
+      <TextField fx:id="tfPrecio" layoutX="347.0" layoutY="176.0" prefHeight="28.0" prefWidth="148.0" styleClass="text-field2" />
+      <ComboBox fx:id="cbProducto" layoutX="165.0" layoutY="141.0" prefHeight="25.0" prefWidth="348.0" />
+      <TextField fx:id="tfDocumento" layoutX="417.0" layoutY="73.0" prefHeight="31.0" prefWidth="163.0" />
+      <Text fill="WHITE" layoutX="343.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nro. Factura:" />
+      <Text fill="WHITE" layoutX="119.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:" />
+      <GridPane fx:id="gridFecha" layoutX="161.0" layoutY="73.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Button fx:id="btAgregar" layoutX="367.0" layoutY="213.0" mnemonicParsing="false" onAction="#clickbtAgregar">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Black/icon-plus-sign.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btEliminar" layoutX="417.0" layoutY="213.0" mnemonicParsing="false" onAction="#clickbtEliminar">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Black/icon-minus-sign.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text fill="WHITE" layoutX="35.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producto de Inventario:" />
+      <Text fill="WHITE" layoutX="106.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:" />
+      <Text fill="WHITE" layoutX="258.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Unitario:" />
+      <Text fill="WHITE" layoutX="97.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proveedor:" />
+      <ComboBox fx:id="cbProveedor" layoutX="165.0" layoutY="107.0" onAction="#cargaProductoMarca" prefHeight="25.0" prefWidth="348.0" />
+      <Text fill="WHITE" layoutX="536.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cód. de Barras:" />
+      <TextField fx:id="tfCodigoBarra" layoutX="623.0" layoutY="141.0" prefHeight="31.0" prefWidth="137.0" />
+      <Text fill="WHITE" layoutX="513.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alicuota I.V.A.:" />
+      <TextField fx:id="tfMontoIva" layoutX="602.0" layoutY="210.0" prefHeight="28.0" prefWidth="124.0" styleClass="text-field2" />
+      <Text fill="WHITE" layoutX="513.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monto I.V.A.:" />
+      <ComboBox fx:id="cbIva" layoutX="601.0" layoutY="178.0" onAction="#calculaIva" prefHeight="25.0" prefWidth="124.0" />
+      <Label fx:id="lblTotal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="692.0" layoutY="545.0" text="Label" textAlignment="JUSTIFY" />
+      <Label fx:id="lblIva" contentDisplay="RIGHT" layoutX="692.0" layoutY="569.0" text="Label" textAlignment="JUSTIFY" />
+      <Label fx:id="lblCant" layoutX="438.0" layoutY="546.0" prefHeight="22.0" prefWidth="75.0" text="Label" />
+      <Label fx:id="lblTotal11" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="692.0" layoutY="590.0" text="Label" textAlignment="JUSTIFY" />
+      <Label layoutX="307.0" layoutY="545.0" text="Total Unidades:" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="562.0" layoutY="546.0" text="Sub-Total:" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="598.0" layoutY="569.0" text="I.V.A.:" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="535.0" layoutY="590.0" text="Total General:" />
+   </children>
+</AnchorPane>

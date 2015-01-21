@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="704.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PersonalController">
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+   <children>
+      <Label layoutX="44.0" layoutY="45.0" text="Personal" />
+      <TableView fx:id="TablaPersonas" editable="true" layoutX="32.0" layoutY="85.0" prefHeight="288.0" prefWidth="642.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="85.0">
+        <columns>
+            <TableColumn fx:id="ColCedula" prefWidth="100.0" text="Céd.Ident." />
+            <TableColumn fx:id="ColNombres" prefWidth="150.0" text="Nombres" />
+            <TableColumn fx:id="ColApellidos" minWidth="0.0" prefWidth="150.0" text="Apellidos" />
+            <TableColumn fx:id="ColDireccion" prefWidth="250.0" text="Dirección" />
+            <TableColumn fx:id="ColTelefonos" prefWidth="144.0" text="Teléfonos" />
+            <TableColumn fx:id="ColPrueba" prefWidth="75.0" text="Prueba" />
+        </columns>
+      </TableView>
+      <Button fx:id="btAgregar" layoutX="504.0" layoutY="52.0" mnemonicParsing="false" onAction="#btAgregarHandler" text="Agregar" />
+      <Button fx:id="btEliminar" layoutX="582.0" layoutY="52.0" mnemonicParsing="false" onAction="#btEliminarHandler" text="Eliminar" />
+   </children>
+</AnchorPane>
