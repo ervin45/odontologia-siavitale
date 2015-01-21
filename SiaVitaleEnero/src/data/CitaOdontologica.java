@@ -18,7 +18,7 @@ public class CitaOdontologica {
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	
+	private String AMPM;
 	private String observacion;
 	private String asistencia;
 
@@ -54,7 +54,14 @@ public class CitaOdontologica {
 	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}	 
+	}
+	
+	public String getAMPM() {
+		return AMPM;
+	}
+	public void setAMPM(String aMPM) {
+		AMPM = aMPM;
+	}
 	
 	public String getObservacion() {
 		return observacion;
