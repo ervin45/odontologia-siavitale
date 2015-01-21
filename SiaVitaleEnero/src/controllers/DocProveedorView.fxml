@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane disable="false" prefHeight="545.0" prefWidth="1170.0" styleClass="background2" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label fx:id="titulo" layoutX="9.0" layoutY="-1.0" styleClass="label-h1" text="Título" />
+    <ToolBar layoutX="9.0" layoutY="41.0">
+      <items>
+        <Button fx:id="botonNuevo" mnemonicParsing="false" onAction="#clickbotonNuevo" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-plus-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonBorrar" mnemonicParsing="false" onAction="#clickbotonBorrar" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-minus-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonModifica" mnemonicParsing="false" onAction="#clickbotonModifica" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-edit.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonGuarda" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-ok-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+        <Button fx:id="botonCancela" mnemonicParsing="false" onAction="#clickbotonCancela" text="">
+          <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../Black/icon-remove-sign.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+      </items>
+    </ToolBar>
+    <ScrollPane prefHeight="465.0" prefWidth="1171.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <content>
+        <AnchorPane id="AnchorPane" prefHeight="465.0" prefWidth="1300.0">
+          <children>
+            <TableView fx:id="Tabla" editable="true" mouseTransparent="false" prefHeight="451.0000999999975" prefWidth="1300.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Propuesta" fx:id="ColPropuesta" />
+                <TableColumn prefWidth="75.0" text="Tipo Doc." fx:id="ColTipoDoc" />
+                <TableColumn prefWidth="100.0" text="Documento" fx:id="ColDocumento" />
+                <TableColumn prefWidth="100.0" text="Control " fx:id="ColControl" />
+                <TableColumn prefWidth="250.0" text="Proveedor o Beneficiario" fx:id="ColProveedor" />
+                <TableColumn prefWidth="200.0" text="Descripción" fx:id="ColDescripcion" />
+                <TableColumn prefWidth="120.0" text="Monto Exento" fx:id="ColMontoExento" />
+                <TableColumn prefWidth="120.0" text="Base Imponible" fx:id="ColBaseImponible" />
+                <TableColumn prefWidth="120.0" text="I.V.A." fx:id="ColIva" />
+                <TableColumn prefWidth="120.0" text="Monto Total" fx:id="ColMontoTotal" />
+              </columns>
+            </TableView>
+          </children>
+        </AnchorPane>
+      </content>
+    </ScrollPane>
+  </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+</AnchorPane>

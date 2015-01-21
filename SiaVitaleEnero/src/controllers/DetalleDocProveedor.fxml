@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="700.0" styleClass="background2" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.DetalleDocProveedorController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label id="tftitulo" fx:id="titulo" layoutX="35.0" layoutY="35.0" styleClass="label-h1" text="Título" />
+    <Label layoutX="65.0" layoutY="294.0" text="Monto Exento" />
+    <Label layoutX="228.0" layoutY="294.0" text="Base Imponible" />
+    <Label layoutX="421.0" layoutY="294.0" text="I.V.A." />
+    <Label layoutX="567.0" layoutY="294.0" text="Monto Total" />
+    <TextField id="" fx:id="tfDescripcion" layoutX="66.0" layoutY="253.0" prefWidth="596.0" />
+    <TextField id="" fx:id="tfMontoExento" layoutX="29.0" layoutY="318.0" prefWidth="150.0" />
+    <TextField id="" fx:id="tfBaseImponible" layoutX="195.0" layoutY="318.0" prefWidth="150.0" />
+    <TextField id="" fx:id="tfMontoIva" layoutX="360.0" layoutY="318.0" prefWidth="150.0" />
+    <TextField id="" fx:id="tfMontoTotal" layoutX="526.0" layoutY="318.0" prefWidth="150.0" />
+    <Label layoutX="36.0" layoutY="167.0" text="Proveedor o Beneficiario" textAlignment="CENTER" />
+    <Label layoutX="70.0" layoutY="230.0" text="Descripción" />
+    <ComboBox id="" fx:id="cbProveedor" layoutX="66.0" layoutY="189.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="47.0" layoutY="102.0" text="Tipo de Documento" textAlignment="CENTER" />
+    <ComboBox id="" fx:id="cbTipoDocumento" layoutX="66.0" layoutY="125.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="201.0" layoutY="105.0" text="Nº Documento" textAlignment="CENTER" />
+    <TextField id="" fx:id="tfDocumento" layoutX="177.0" layoutY="128.0" prefWidth="131.0" />
+    <Label layoutX="358.0" layoutY="106.0" text="Nº Control" textAlignment="CENTER" />
+    <TextField id="" fx:id="tfControl" layoutX="322.0" layoutY="128.0" prefWidth="131.0" />
+    <Label layoutX="551.0" layoutY="106.0" text="Fecha" textAlignment="CENTER" />
+    <Button fx:id="btGuardar" layoutX="501.0" layoutY="381.0" mnemonicParsing="false" text="">
+      <graphic>
+        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../Black/icon-ok-sign.png" />
+          </image>
+        </ImageView>
+      </graphic>
+    </Button>
+    <Button fx:id="btCancelar" layoutX="545.0" layoutY="381.0" mnemonicParsing="false" text="">
+      <graphic>
+        <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../Black/icon-remove-sign.png" />
+          </image>
+        </ImageView>
+      </graphic>
+    </Button>
+    <TextField id="" fx:id="tfFecha" layoutX="504.0" layoutY="128.0" prefWidth="131.0" />
+  </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+</AnchorPane>

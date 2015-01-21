@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane onMouseEntered="#refrescar" prefHeight="509.0" prefWidth="876.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductoController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="1.0" layoutY="41.0" prefHeight="469.0" prefWidth="875.0">
+      <children>
+        <SplitPane dividerPositions="0.3325714285714286" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="469.0" prefWidth="875.0">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" opacity="1.0" prefHeight="401.0" prefWidth="262.0">
+              <children>
+                <TableView fx:id="Tabla" prefHeight="401.0" prefWidth="238.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <columns>
+                    <TableColumn fx:id="ColCodigo" prefWidth="75.0" text="Código" visible="false" />
+                    <TableColumn fx:id="ColDescripcion" prefWidth="270.0" text="Descripción General" />
+                  </columns>
+                </TableView>
+              </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="581.0" styleClass="background2">
+              <children>
+                <Label layoutX="14.0" layoutY="28.0" styleClass="label-h1" text="Productos de Inventario" />
+                <TabPane layoutX="0.0" layoutY="71.0" prefHeight="397.0" prefWidth="581.0" side="TOP" tabClosingPolicy="UNAVAILABLE">
+                  <tabs>
+                              <Tab text="Descripción General">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="background0">
+                                       <children>
+                                          <Label layoutX="42.0" layoutY="58.0" text="Descripción General:" />
+                                          <TextField fx:id="tfDescriGral0" layoutX="103.0" layoutY="87.0" prefHeight="28.0" prefWidth="405.0" styleClass="text-field" />
+                                          <Label layoutX="42.0" layoutY="142.0" text="Comentario" />
+                                          <TextField fx:id="tfComentario0" layoutX="103.0" layoutY="171.0" prefHeight="28.0" prefWidth="405.0" styleClass="text-field" />
+                                          <ToolBar layoutX="280.0" layoutY="246.0" prefHeight="40.0" prefWidth="271.0">
+                                             <items>
+                                                <Button fx:id="btNuevo" mnemonicParsing="false" onAction="#clickbtNuevo">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Black/icon-plus-sign.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="btBorra" mnemonicParsing="false" onAction="#clickbtBorra">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Black/icon-minus-sign.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="btEdita" mnemonicParsing="false" onAction="#clickbtEdita">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Black/icon-edit.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="btBusca" mnemonicParsing="false" onAction="#clickbtBusca">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Black/icon-search.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="btGuarda" mnemonicParsing="false" onAction="#clickbtGuarda">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Black/icon-ok-sign.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="btCancela" mnemonicParsing="false" onAction="#clickbtCancela">
+                                                   <graphic>
+                                                      <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../Black/icon-remove-sign.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </items>
+                                          </ToolBar>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                    <Tab closable="true" text="Presentación">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="581.0" styleClass="background0">
+                          <children>
+                            <Label id="LbCodigoCosa" layoutX="24.0" layoutY="24.0" prefHeight="18.0" prefWidth="126.0" text="Descripción General:" />
+                            <TextField id="tfRIF" fx:id="tfDescriGral" layoutX="149.0" layoutY="21.0" prefWidth="404.0" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="94.0" text="Presentación:" />
+                            <ComboBox id="cbCiudad" fx:id="cbUndMedida" layoutX="211.0" layoutY="92.0" prefHeight="21.0" prefWidth="227.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                            <Button id="btAgregar" fx:id="btAgregar1" layoutX="457.0" layoutY="91.0" mnemonicParsing="false" onAction="#clickbtAgregar1" text="">
+                              <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                    <Image url="@../Black/icon-plus-sign.png" />
+                                  </image>
+                                </ImageView>
+                              </graphic>
+                            </Button>
+                            <Button id="btEliminar" fx:id="btEliminar1" layoutX="457.0" layoutY="153.0" mnemonicParsing="false" onAction="#clickbtEliminar1" text="">
+                              <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                    <Image url="@../Black/icon-minus-sign.png" />
+                                  </image>
+                                </ImageView>
+                              </graphic>
+                            </Button>
+                            <TableView fx:id="TablaPresentacion" layoutX="101.0" layoutY="158.0" prefHeight="193.0" prefWidth="353.0">
+                              <columns>
+                                <TableColumn fx:id="ColIdPresentacion" prefWidth="50.0" text="Id" visible="false" />
+                                <TableColumn fx:id="ColDescripcionPresentacion" prefWidth="339.0" text="Presentación" />
+                              </columns>
+                            </TableView>
+                            <Button id="btAgregar" fx:id="btCheck1" layoutX="499.0" layoutY="56.0" mnemonicParsing="false" text="" visible="false">
+                              <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                    <Image url="@../Black/icon-ok-sign.png" />
+                                  </image>
+                                </ImageView>
+                              </graphic>
+                            </Button>
+                            <TextField fx:id="tfCantidadPresentacion" layoutX="113.0" layoutY="88.0" prefWidth="67.0" />
+                                          <Label layoutX="120.0" layoutY="62.0" text="Cantidad" textAlignment="CENTER" />
+                                          <Label layoutX="270.0" layoutY="62.0" text="Unidad de Medida" textAlignment="CENTER" />
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </Tab>
+                    <Tab text="Marca">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="581.0" styleClass="background0">
+                          <children>
+                            <Label id="LbCodigoCosa" layoutX="24.0" layoutY="24.0" prefWidth="119.0" text="Descripción General:" />
+                            <TextField id="tfRIF" fx:id="tfDescriGral2" layoutX="146.0" layoutY="21.0" prefWidth="404.0" />
+                            <Label id="LbDescripcionCosa" layoutX="26.0" layoutY="63.0" text="Presentación:" />
+                            <TableView id="TablaMarca" fx:id="TablaProductoMarca" layoutX="25.0" layoutY="160.0" prefHeight="192.0" prefWidth="500.0">
+                              <columns>
+                                <TableColumn fx:id="ColIdProductoMarca" prefWidth="50.0" text="Id" visible="false" />
+                                                <TableColumn fx:id="ColDescriGral" prefWidth="182.0" text="Descripción General" />
+                                <TableColumn fx:id="ColPresentacion" prefWidth="146.0" text="Presentación" />
+                                <TableColumn fx:id="ColMarca" prefWidth="155.0" text="Marca" />
+                              </columns>
+                            </TableView>
+                            <Button id="btAgregar" fx:id="btAgregar2" layoutX="466.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickbtAgregar2" text="">
+                              <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                    <Image url="@../Black/icon-plus-sign.png" />
+                                  </image>
+                                </ImageView>
+                              </graphic>
+                            </Button>
+                            <TextField id="tfRIF" fx:id="tfPresentacion" layoutX="24.0" layoutY="330.0" prefWidth="404.0" visible="false" />
+                            <Label id="LbDescripcionCosa" layoutX="25.0" layoutY="97.0" text="Marca:" />
+                            <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="125.0" text="Código de Barra:" visible="false" />
+                            <TextField id="tfRIF" fx:id="tfCodigoBarra" layoutX="146.0" layoutY="120.0" prefWidth="246.0" visible="false" />
+                            <ComboBox fx:id="cbMarca" layoutX="146.0" layoutY="95.0" onAction="#manejadorcbMarcaAction" prefHeight="21.0" prefWidth="268.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                            <Button id="btEliminar" fx:id="btEliminar2" layoutX="532.0" layoutY="198.0" mnemonicParsing="false" onAction="#clickbtEliminar2" text="">
+                                             <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                    <Image url="@../Black/icon-minus-sign.png" />
+                                  </image>
+                                </ImageView>
+                                             </graphic></Button>
+                            <ComboBox fx:id="cbPresentacion" layoutX="146.0" layoutY="61.0" onAction="#manejadorcbPresentacionAction" prefHeight="21.0" prefWidth="288.0">
+                              <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="Item 1" />
+                                  <String fx:value="Item 2" />
+                                  <String fx:value="Item 3" />
+                                </FXCollections>
+                              </items>
+                            </ComboBox>
+                                          <Label id="LbDescripcionCosa" layoutX="24.0" layoutY="159.0" text="Comentario:" visible="false" />
+                                          <TextField id="tfRIF" fx:id="tfComentario" layoutX="146.0" layoutY="154.0" prefHeight="28.0" prefWidth="341.0" visible="false" />
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </Tab>
+                  </tabs>
+                </TabPane>
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+</AnchorPane>

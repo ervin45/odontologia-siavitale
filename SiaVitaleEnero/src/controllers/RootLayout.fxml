@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" snapToPixel="true" styleClass="background" visible="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootLayoutController">
+  <!-- TODO Add Nodes -->
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+  <top>
+    <MenuBar>
+      <menus>
+            <Menu mnemonicParsing="false" text="Producto">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#botonProducto" text="Definir" />
+                <MenuItem mnemonicParsing="false" onAction="#botonConfProducto" text="Configurar" />
+              </items>
+            </Menu>
+        <Menu mnemonicParsing="false" text="Inventario">
+          <items>
+                  <MenuItem mnemonicParsing="false" onAction="#botonRequisicion" text="Requisición Inventario" />
+                  <MenuItem mnemonicParsing="false" onAction="#botonMovimientoInventario" text="Movimiento Inventario" />
+                  <MenuItem mnemonicParsing="false" onAction="#botonConfInventario" text="Configurar" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Cuentas por Pagar">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#botonProveedor" text="Proveedores y Beneficiarios" />
+            <MenuItem disable="true" mnemonicParsing="false" onAction="#botonDocProveedor" text="Documentos" />
+            <MenuItem disable="true" mnemonicParsing="false" onAction="#botonCentrodeCosto" text="Centro de Costos" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Tesorería">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#botonCuentaBancaria" text="Instrumentos Bancarios" />
+<!--        <MenuItem mnemonicParsing="false" text="Emisión de Pagos" /> -->
+<!--        <MenuItem mnemonicParsing="false" onAction="#botonBanco" text="Bancos" /> --> 
+          </items>
+        </Menu>
+        <Menu disable="true" mnemonicParsing="false" text="Contabilidad">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#botonCuentaContable" text="Cuenta Contable" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Talento Humano">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#botonCualidadAmbiente" text="Ambiente" />
+            <MenuItem mnemonicParsing="false" onAction="#botonCualidadEducacion" text="Educación" />
+            <MenuItem mnemonicParsing="false" onAction="#botonCualidadEsfuerzo" text="Esfuerzo" />
+            <MenuItem mnemonicParsing="false" onAction="#botonCualidadExperiencia" text="Experiencia" />
+            <MenuItem mnemonicParsing="false" onAction="#botonCualidadResponsabilidad" text="Responsabilidad" />
+            <MenuItem mnemonicParsing="false" onAction="#botonCualidadRiesgo" text="Riesgo" />
+            <MenuItem mnemonicParsing="false" onAction="#botonPersonal" text="Personal" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Odontologia">
+        	<items>
+            	<MenuItem mnemonicParsing="false" onAction="#botonHorariosTurnos" text="Horario/Turnos" />
+            	<MenuItem mnemonicParsing="false" onAction="#botonCitas" text="Citas" />
+            </items>
+        </Menu>
+        <Menu disable="true" mnemonicParsing="false" text="Ayuda">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>
+

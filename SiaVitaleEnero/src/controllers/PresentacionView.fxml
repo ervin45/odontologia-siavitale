@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="368.0" prefWidth="691.0" styleClass="background2" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <SplitPane dividerPositions="0.42257597684515197" focusTraversable="true" prefHeight="400.0" prefWidth="611.999977929685" AnchorPane.bottomAnchor="1.02" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.02">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="221.0" styleClass="background2">
+          <children>
+            <TableView fx:id="Tabla" mouseTransparent="false" prefHeight="367.0" prefWidth="289.0000999999975" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Código" fx:id="ColCodigo" />
+                <TableColumn prefWidth="75.0" text="Cant." fx:id="ColCantidad" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="194.0" text="Und. Medida" fx:id="ColUndMedida" />
+              </columns>
+            </TableView>
+          </children>
+        </AnchorPane>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="327.0" snapToPixel="true" styleClass="background2">
+          <children>
+            <Group id="Group" layoutX="17.0" layoutY="103.0">
+              <children>
+                <Label id="LbCodigoCosa" layoutX="0.0" layoutY="0.0" text="Código:" visible="false" />
+                <Label id="LbDescripcionCosa" layoutX="0.0" layoutY="44.0" text="Cantidad:" />
+                <Label id="LbDescripcionCosa" layoutX="0.0" layoutY="90.0" text="Unidad de Medida:" />
+                <Label id="LbComentario" layoutX="0.0" layoutY="134.0" text="Comentario:" visible="false" />
+                <Label id="LbStatus" layoutX="0.0" layoutY="143.0" text="Status:" visible="false" />
+              </children>
+            </Group>
+            <ToolBar layoutY="308.0" AnchorPane.rightAnchor="119.0">
+              <items>
+                <Button fx:id="botonNuevo" mnemonicParsing="false" onAction="#clickbotonNuevo" text="">
+                  <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../Black/icon-plus-sign.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="botonModifica" mnemonicParsing="false" onAction="#clickbotonModifica" text="">
+                  <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../Black/icon-edit.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="botonBorrar" mnemonicParsing="false" onAction="#clickbotonBorrar" text="">
+                  <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../Black/icon-minus-sign.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="botonGuarda" mnemonicParsing="false" onAction="#clickbotonGuarda" text="">
+                  <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../Black/icon-ok-sign.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="botonCancela" mnemonicParsing="false" onAction="#clickbotonCancela" text="">
+                  <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../Black/icon-remove-sign.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+              </items>
+            </ToolBar>
+            <Group id="Group" layoutX="96.0" layoutY="100.0">
+              <children>
+                <TextField id="tfcodigo" fx:id="tfCodigo" disable="true" layoutX="38.0" layoutY="0.0" prefWidth="77.0" visible="false" />
+                <TextField id="tfDescripcion" fx:id="tfCantidad" layoutX="38.0" layoutY="44.0" prefWidth="104.0" />
+                <TextField fx:id="tfComentario" layoutX="38.0" layoutY="133.0" prefWidth="162.0" visible="false" />
+                <ComboBox fx:id="cbUndMedida" layoutX="38.0" layoutY="91.0" prefHeight="21.0" prefWidth="169.0">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Item 1" />
+                      <String fx:value="Item 2" />
+                      <String fx:value="Item 3" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                <TextField fx:id="tfStatus" layoutX="0.0" layoutY="142.0" prefWidth="75.0" visible="false" />
+              </children>
+            </Group>
+            <Label fx:id="titulo" layoutX="17.0" layoutY="35.0" styleClass="label-h1" text="Label" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
+</AnchorPane>

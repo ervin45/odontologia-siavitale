@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+
+<!-- onMouseEntered="#refrescar"  -->
+
+<AnchorPane prefHeight="650.0" prefWidth="850.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InstrumentosBancariosController">
+	<children>
+		<Pane layoutX="1.0" prefHeight="690.0" prefWidth="850.0">
+			<children>
+				<SplitPane dividerPositions="0.20" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="690.0" prefWidth="850.0">
+					<items>
+						<AnchorPane minHeight="0.0" minWidth="0.0" opacity="1.0" prefHeight="401.0" prefWidth="200.0">
+							<children>
+								<TableView fx:id="TablaBanco" prefHeight="401.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				                  <columns>
+				                    <TableColumn fx:id="ColBanco" prefWidth="200.0" text="Banco" />
+				                  </columns>
+				                </TableView>
+							</children>
+							<stylesheets>
+    							<URL value="@DarkTheme.css" />
+    						</stylesheets>
+						</AnchorPane>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="700.0" styleClass="background2">
+							<children>
+								<Label layoutX="14.0" layoutY="28.0" styleClass="label-h1" text="Información Bancaria" />								
+								 <TabPane layoutX="0.0" layoutY="71.0" prefHeight="650.0" prefWidth="581.0" side="TOP" tabClosingPolicy="UNAVAILABLE">
+                  					<tabs>
+                             			<Tab text="Descripción General">
+                             				<content>
+						                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="700.0" styleClass="background0">
+						                          <children>
+						                          	<Label fx:id="Alerta" layoutX="120" layoutY="460" styleClass="label-alarma" visible="false"/>
+						                            <Label fx:id="lNombre" layoutX="45.0" layoutY="22.0" text="Nombre" />
+		                             				<TextField fx:id="tfNombre" layoutX="112.0" layoutY="20.0" />		
+		                             				<Label fx:id="lPaginaWeb" layoutX="18.0" layoutY="60.0" text="Pagina Web" />	                             					
+		 											<TextField fx:id="tfPaginaWeb" layoutX="112.0" layoutY="60.0" />					                            	
+						                            <Label fx:id="lNombrePC" layoutX="15.0" layoutY="135.0" text="Nombre" />	                             					
+		 											<TextField fx:id="tfNombrePC" layoutX="70.0" layoutY="130.0" minWidth="270.0" disable="true" />			
+		 											<Label fx:id="lTelefonoPC" layoutX="345.0" layoutY="135.0" text="Telefono" />	                             					
+		 											<TextField fx:id="tfTelefonoPC" layoutX="400.0" layoutY="130.0" disable="true" />
+		 											<Label fx:id="lCorreoElectronicoPC" layoutX="50.0" layoutY="170.0" text="Correo Electronico" />	                             					
+		 											<TextField fx:id="tfCorreoElectronicoPC" layoutX="180.0" layoutY="170.0" minWidth="270.0" disable="true"/>		                            
+						                            <TableView fx:id="TablaPersonasContacto" layoutX="60.0" layoutY="210.0" prefHeight="193.0" prefWidth="400.0">
+									                  <columns>
+									                    <TableColumn fx:id="ColNombre" prefWidth="150.0" text="Nombre" />
+									                    <TableColumn fx:id="ColTelefono" prefWidth="100.0" text="Telefono" />
+									                    <TableColumn fx:id="ColCorreo" prefWidth="150.0" text="Correo Electrónico" />									                    
+									                  </columns>
+					                				</TableView>
+					                				<Button fx:id="btAgregarBanco" layoutX="347.0" layoutY="35.0" mnemonicParsing="false" onAction="#actionAgregarBanco" text="">
+						                                <graphic>
+  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+  							                                  <image>
+  							                                    <Image url="@../Black/icon-plus-sign.png" />
+  							                                  </image>
+  							                                </ImageView>
+						                                </graphic>
+						                            </Button>
+						                            <Button fx:id="btEliminarBanco" layoutX="389.0" layoutY="35.0" mnemonicParsing="false" text=""  onAction="#actionEliminarBanco" disable="true">
+						                                <graphic>
+  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+  							                                  <image>
+  							                                    <Image url="@../Black/icon-minus-sign.png" />
+  							                                  </image>
+  							                                </ImageView>
+						                                </graphic>  	
+													 </Button>
+													 <Button fx:id="btEditarBanco" layoutX="430.0" layoutY="35.0" mnemonicParsing="false" text="" onAction="#actionEditarBanco" disable="true">
+						                                <graphic>
+  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+  							                                  <image>
+  							                                    <Image url="@../Black/icon-edit.png" />
+  							                                  </image>
+  							                                </ImageView>
+						                                </graphic>  	
+													 </Button>
+													 <Button fx:id="btAgregarPC" layoutX="480.0" layoutY="210.0" mnemonicParsing="false" onAction="#actionAgregarPersonaContacto" text="" disable="true">
+						                                <graphic>
+  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+  							                                  <image>
+  							                                    <Image url="@../Black/icon-plus-sign.png" />
+  							                                  </image>
+  							                                </ImageView>
+						                                </graphic>
+						                            </Button>
+						                            <Button fx:id="btEliminarPC" layoutX="480.0" layoutY="260.0" mnemonicParsing="false" text="" onAction="#actionEliminarPersonaContacto" disable="true">
+						                                <graphic>
+  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+  							                                  <image>
+  							                                    <Image url="@../Black/icon-minus-sign.png" />
+  							                                  </image>
+  							                                </ImageView>
+						                                </graphic>  	
+													 </Button>
+													 <Button fx:id="btEditarPC" layoutX="480.0" layoutY="310.0" mnemonicParsing="false" text="" onAction="#actionEditarPersonaContacto" disable="true">
+						                                <graphic>
+  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+  							                                  <image>
+  							                                    <Image url="@../Black/icon-edit.png" />
+  							                                  </image>
+  							                                </ImageView>
+						                                </graphic>  	
+													 </Button>						                            
+						                          </children>
+						                        </AnchorPane>
+                      						</content>
+                              			</Tab>
+                              			<Tab text="Cuentas Bancarias">
+                             				<content>
+                             					<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="700.0" styleClass="background0">
+                                					<children>
+   	                             					  	<Label fx:id="lNombreBanco" layoutX="20.0" layoutY="20.0" text="Nombre del banco" />
+		                             					<Label fx:id="lNombreBancoValor" layoutX="140.0" layoutY="20.0" text="Banesco" />	                             					
+   	                             						<Label fx:id="lCodigoAgencia" layoutX="20.0" layoutY="60.0" text="Codigo de agencia" />
+	   	                             					<TextField fx:id="tfCodigoAgencia" layoutX="140.0" layoutY="60.0" disable="true"/>	
+	   	                             					<Label fx:id="lDescripcionAgencia" layoutX="20.0" layoutY="100.0" text="Descripcion agencia" />
+	   	                             					<TextField fx:id="tfDescripcionAgencia" layoutX="140.0" layoutY="100.0" disable="true" />	   	                             					
+	   	                             					<Label fx:id="lTlfAgencia" layoutX="20" layoutY="140" text="Telefono" />	   	                             					
+	   	                             					<TextField fx:id="tfTlfAgencia" layoutX="140.0" layoutY="140.0" disable="true"/>
+	   	                             					<Label fx:id="lDirAgencia" layoutX="20" layoutY="180" text="Direccion" />	                          					
+	   	                             					<TextField fx:id="tfDirAgencia" layoutX="140.0" layoutY="180.0" minWidth="300.0" disable="true"/>
+	   	                             					<Label fx:id="lTipoCta" layoutX="20.0" layoutY="220.0" text="Tipo cuenta" />	                             					
+	   	                             					<ChoiceBox fx:id="cbTipoCta" layoutX="140.0" layoutY="220.0" styleClass="colorletra" disable="true"> 
+													      <items>
+													        <FXCollections fx:factory="observableArrayList">
+													          <String fx:value="" />
+													          <String fx:value="" />
+													        </FXCollections>
+													      </items>
+									    				</ChoiceBox>	   	                             					             
+	   	                             					<Label fx:id="lNroCta" layoutX="310" layoutY="60" text="Nro cuenta" />	   	                             					
+	   	                             					<TextField fx:id="tfNroCta" layoutX="410.0" layoutY="60.0" disable="true"/>  				
+	   	                             					<Label fx:id="lCodigoContable" layoutX="310.0" layoutY="100.0" text="Codigo contable" /> 	                             					
+	   	                             					<ChoiceBox fx:id="cbCtaContable" layoutX="410.0" layoutY="100.0" styleClass="colorletra" disable="true">
+													      <items>
+													        <FXCollections fx:factory="observableArrayList">
+													          <String fx:value="" />
+													          <String fx:value="" />
+													        </FXCollections>
+													      </items>
+									    				</ChoiceBox>	 	   	                             					                     					
+	   	                             					<TableView fx:id="TablaCuentasBancarias" layoutX="60.0" layoutY="260.0" prefHeight="193.0" prefWidth="370.0">
+	   									                  <columns>
+	   									                    <TableColumn fx:id="ColTipoCuenta" prefWidth="100.0" text="Tipo cuenta" />
+	   									                    <TableColumn fx:id="ColNumero" prefWidth="270.0" text="Numero cuenta" />
+	   									                  </columns>
+	   					                				</TableView>
+	   					                				<Button fx:id="btAgregarCB" layoutX="450.0" layoutY="300.0" mnemonicParsing="false" onAction="#actionAgregarCuentaBancaria" text="" disable="true">
+							                                <graphic>
+	  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+	  							                                  <image>
+	  							                                    <Image url="@../Black/icon-plus-sign.png" />
+	  							                                  </image>
+	  							                                </ImageView>
+							                                </graphic>
+						                            	</Button>
+							                            <Button fx:id="btEliminarCB" layoutX="450.0" layoutY="350.0" mnemonicParsing="false" text="" onAction="#actionEliminarCuentaBancaria" disable="true">
+							                                <graphic>
+	  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+	  							                                  <image>
+	  							                                    <Image url="@../Black/icon-minus-sign.png" />
+	  							                                  </image>
+	  							                                </ImageView>
+							                                </graphic>  	
+														 </Button>
+														 <Button fx:id="btEditarCB" layoutX="450.0" layoutY="400.0" mnemonicParsing="false" text="" onAction="#actionEditarCuentaBancaria" disable="true">
+							                                <graphic>
+	  							                                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="533.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+	  							                                  <image>
+	  							                                    <Image url="@../Black/icon-edit.png" />
+	  							                                  </image>
+	  							                                </ImageView>
+							                                </graphic>  	
+														 </Button>		
+                                					</children>
+                             					</AnchorPane>
+                             				</content>
+                              			</Tab>
+                              		</tabs>
+                              	</TabPane>
+							</children>
+							<stylesheets>
+    							<URL value="@DarkTheme.css" />
+    						</stylesheets>
+						</AnchorPane>
+					</items>			
+				</SplitPane>
+			</children>
+		</Pane>
+	</children>	
+</AnchorPane>
