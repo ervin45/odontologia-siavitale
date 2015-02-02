@@ -8,7 +8,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane prefHeight="550.0" prefWidth="670.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CitasOdontologicasController">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CitasOdontologicasController">
 	<children>
 		<Label fx:id="lDoctor" layoutX="120.0" layoutY="100.0" styleClass="colorletra" text="Doctor" />		
 		<ChoiceBox fx:id="cbDoctor" layoutX="170.0" layoutY="100.0" styleClass="colorletra">
@@ -33,15 +33,31 @@
           	<TableColumn fx:id="tcHora" prefWidth="85.0" text="Hora\Dia" />
           </columns>
         </TableView>
-		<TableView fx:id="tvCronograma" layoutX="150.0" layoutY="170.0" prefHeight="650.0" prefWidth="470.0">
+		<TableView fx:id="tvLunes" layoutX="150.0" layoutY="170.0" prefHeight="300.0" prefWidth="100">
           <columns>
-            <TableColumn fx:id="tcLunes" prefWidth="130.0" text="Lunes" />
-            <TableColumn fx:id="tcMartes" prefWidth="130.0" text="Martes" />
-            <TableColumn fx:id="tcMiercoles" prefWidth="130.0" text="Miercoles" />
-            <TableColumn fx:id="tcJueves" prefWidth="130.0" text="Jueves" />
-            <TableColumn fx:id="tcViernes" prefWidth="130.0" text="Viernes" />
+            <TableColumn fx:id="tcLunes" prefWidth="100" text="Lunes" />
           </columns>          
         </TableView>
+        <TableView fx:id="tvMartes" layoutX="250.0" layoutY="170.0" prefHeight="300.0" prefWidth="100">
+          <columns>
+           	<TableColumn fx:id="tcMartes" prefWidth="100" text="Martes" />
+          </columns>          
+        </TableView>   
+        <TableView fx:id="tvMiercoles" layoutX="350.0" layoutY="170.0" prefHeight="300.0" prefWidth="100">
+          <columns>
+           	<TableColumn fx:id="tcMiercoles" prefWidth="100" text="Miercoles" />
+          </columns>          
+        </TableView>   
+        <TableView fx:id="tvJueves" layoutX="450.0" layoutY="170.0" prefHeight="300.0" prefWidth="100">
+          <columns>
+           	<TableColumn fx:id="tcJueves" prefWidth="100" text="Jueves" />
+          </columns>          
+        </TableView>   
+        <TableView fx:id="tvViernes" layoutX="550.0" layoutY="170.0" prefHeight="300.0" prefWidth="100">
+          <columns>
+           	<TableColumn fx:id="tcViernes" prefWidth="100" text="Viernes" />
+          </columns>          
+        </TableView>        
         <Button fx:id="btAM" layoutX="25.0" layoutY="230.0" mnemonicParsing="false" onAction="#actionTurnoAM" text="">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
@@ -59,16 +75,7 @@
                   </image>
                 </ImageView>
             </graphic>
-    	</Button>
-    	<Button fx:id="btCargarSemana" layoutX="120.0" layoutY="50.0" mnemonicParsing="false" onAction="#actionCargarSemana" text="" disable="true">
-            <graphic>
-                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                    <Image url="@../Black/icon-plus-sign.png" />
-                  </image>
-                </ImageView>
-            </graphic>
-    	</Button>
+    	</Button>    	
     	<Button fx:id="btAgregarCita" layoutX="120.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionAgregarCita" text="" disable="true">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
