@@ -52,9 +52,7 @@ public class Principal extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		
-
-		System.out.println("start!!!");
+//		System.out.println("start!!!");
 		Screen screen = Screen.getPrimary();
 		final Rectangle2D bounds = screen.getVisualBounds();
 		
@@ -246,7 +244,7 @@ public class Principal extends Application {
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();        
 		    fabrica = config.buildSessionFactory(serviceRegistry);
 			
-			System.out.println("Ya se inicializó toda la data!!!");
+//			System.out.println("Ya se inicializó toda la data!!!");
 
 //			new SchemaExport(config).create(true,true);   // SE USA PARA CREAR LAS TABLAS EN LA BD!!!
 		}catch (HibernateException e) {
