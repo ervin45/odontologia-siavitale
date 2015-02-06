@@ -1,5 +1,7 @@
 package controllers;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,6 +29,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
@@ -38,7 +42,10 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class CitasOdontologicasController{	
@@ -101,6 +108,9 @@ public class CitasOdontologicasController{
 	ObservableList<CitaOdontologica> citaListJueves = FXCollections.observableArrayList();
 	ObservableList<CitaOdontologica> citaListViernes = FXCollections.observableArrayList();
 	
+	
+	String posNuevaLunes="", posNuevaMartes="", posNuevaMiercoles="", posNuevaJueves="", posNuevaViernes="";
+	
 	ObservableList<Doctor> DoctorList = FXCollections.observableArrayList();
 	private ObservableList<String> opcionDoctor = FXCollections.observableArrayList();	
 	
@@ -119,12 +129,18 @@ public class CitasOdontologicasController{
 	private SimpleDateFormat patronHora = new SimpleDateFormat("h");
 	private SimpleDateFormat patronMinuto = new SimpleDateFormat("mm");
 	
+	NuevaCitaOdontologicaV NuevaCitaOVentana;
+	
+	private Ventanas ProgramaPrincipal = new Ventanas();
+	
+	private int posNuevaCita = 0, posDoctorSeleccionado = 0;
+	
 	public CitasOdontologicasController(){			
 	}
 		
 	@FXML
 	private void initialize(){		
-		
+				
 		dpFecha = new DatePicker();		
 		dpFecha.setDateFormat( new SimpleDateFormat("dd-MM-yyyy"));
 		dpFecha.getCalendarView().setShowTodayButton(false);
@@ -156,28 +172,41 @@ public class CitasOdontologicasController{
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {						
 				if (!opcionDoctor.isEmpty()){
 					System.out.println("0: "+arg2.intValue());
-//					System.out.println("1: "+opcionDoctor.get(arg2.intValue()));
-//					System.out.println("nombre doctor: "+DoctorList.get(arg2.intValue()).getPersona().getApellidos());
+					posDoctorSeleccionado=arg2.intValue();
 					idDoctorSeleccionado=DoctorList.get(arg2.intValue()).getId();
-//					System.out.println("id: "+idDoctorSeleccionado);
 					btAgregarCita.setDisable(false);
+					posNuevaLunes=posNuevaMartes=posNuevaMiercoles=posNuevaJueves=posNuevaViernes="";
+//					citaListLunes.clear();		citaListMartes.clear();
+//					citaListMiercoles.clear();	citaListJueves.clear();	
+//					citaListViernes.clear();
+//					CitaOdontologica oco = new CitaOdontologica();	oco.setObservacion("libre");
+//					for (int e=0;e<9;e++){
+//						citaListLunes.add(oco);		citaListMartes.add(oco);
+//						citaListMiercoles.add(oco);		citaListJueves.add(oco);
+//						citaListViernes.add(oco);			
+//					}						
+//					tvLunes.setItems(citaListLunes);	tvMartes.setItems(citaListMartes);
+//					tvMiercoles.setItems(citaListMiercoles);	tvJueves.setItems(citaListJueves);
+//					tvViernes.setItems(citaListViernes);
 				}
+				
 		}});		
 	}	
 
 	@FXML
 	private void actionTurnoPM(){
 		horaList.clear();cargarHorasPM();tvHorario.setItems(horaList);
-		turno=true;
-		CitaOdontologica oco = null;
+		posNuevaLunes=posNuevaMartes=posNuevaMiercoles=posNuevaJueves=posNuevaViernes="";
+		turno=true;		
+		citaListLunes.clear();		citaListMartes.clear();
+		citaListMiercoles.clear();		citaListJueves.clear();
+		citaListViernes.clear();
+		CitaOdontologica oco = new CitaOdontologica();	oco.setObservacion("libre");
 		for (int e=0;e<9;e++){
 			citaListLunes.add(oco);		citaListMartes.add(oco);
 			citaListMiercoles.add(oco);		citaListJueves.add(oco);
 			citaListViernes.add(oco);			
-		}
-		citaListLunes.clear();		citaListMartes.clear();
-		citaListMiercoles.clear();		citaListJueves.clear();
-		citaListViernes.clear();	
+		}		
 		tvLunes.setItems(citaListLunes);		tvMartes.setItems(citaListMartes);
 		tvMiercoles.setItems(citaListMiercoles);		tvJueves.setItems(citaListJueves);
 		tvViernes.setItems(citaListViernes);
@@ -194,16 +223,17 @@ public class CitasOdontologicasController{
 	@FXML
 	private void actionTurnoAM(){	
 		horaList.clear();cargarHorasAM();tvHorario.setItems(horaList);
-		turno=false;
-		CitaOdontologica oco = null;
+		posNuevaLunes=posNuevaMartes=posNuevaMiercoles=posNuevaJueves=posNuevaViernes="";
+		turno=false;		
+		citaListLunes.clear();		citaListMartes.clear();
+		citaListMiercoles.clear();	citaListJueves.clear();	
+		citaListViernes.clear();
+		CitaOdontologica oco = new CitaOdontologica();	oco.setObservacion("libre");
 		for (int e=0;e<9;e++){
 			citaListLunes.add(oco);		citaListMartes.add(oco);
 			citaListMiercoles.add(oco);		citaListJueves.add(oco);
 			citaListViernes.add(oco);			
-		}
-		citaListLunes.clear();		citaListMartes.clear();
-		citaListMiercoles.clear();	citaListJueves.clear();	
-		citaListViernes.clear();					
+		}						
 		tvLunes.setItems(citaListLunes);	tvMartes.setItems(citaListMartes);
 		tvMiercoles.setItems(citaListMiercoles);	tvJueves.setItems(citaListJueves);
 		tvViernes.setItems(citaListViernes);
@@ -217,7 +247,6 @@ public class CitasOdontologicasController{
 	}	
 
 	private void cargarSemana(Date fechaSeleccionada){
-//		SimpleDateFormat nombreDia = new SimpleDateFormat("E");new SimpleDateFormat("a");
 		SimpleDateFormat numeroDia = new SimpleDateFormat("u");
 		System.out.println("dd: "+patron.format(fechaSeleccionada));
 			
@@ -291,27 +320,27 @@ public class CitasOdontologicasController{
 			
 			if (patroND.format(co.getFecha()).compareTo("lun")==0){
 				System.out.println("cita para lunes "+co.getFecha().getHours() +":"+co.getFecha().getMinutes());
-				citaListLunes.add(co);
+//				System.out.println("hora lunes:  "+patronHora.format(co.getFecha()));		System.out.println("minutos lunes:  "+patronMinuto.format(co.getFecha()));		
+				mostrarCitaSegunIntervaloHora(co,"lunes");		
 				tvLunes.setItems(citaListLunes);
 			}else if (patroND.format(co.getFecha()).compareTo("mar")==0){
 				System.out.println("cita para martes "+co.getFecha().getHours() +":"+co.getFecha().getMinutes());
-				citaListMartes.add(co);
+//				System.out.println("hora martes:  "+patronHora.format(co.getFecha()));		System.out.println("minutos martes:  "+patronMinuto.format(co.getFecha()));		
+				mostrarCitaSegunIntervaloHora(co,"martes");		
 				tvMartes.setItems(citaListMartes);				
-			}else if (patroND.format(co.getFecha()).compareTo("mie")==0){
+			}else if (patroND.format(co.getFecha()).compareTo("mié")==0){
 				System.out.println("cita para miercoles "+co.getFecha().getHours() +":"+co.getFecha().getMinutes());
-				citaListMiercoles.add(co);
+//				System.out.println("hora miercoles:  "+patronHora.format(co.getFecha()));		System.out.println("minutos miercoles:  "+patronMinuto.format(co.getFecha()));		
+				mostrarCitaSegunIntervaloHora(co,"miercoles");			
 				tvMiercoles.setItems(citaListMiercoles);				
 			}else if (patroND.format(co.getFecha()).compareTo("jue")==0){
-				System.out.println("cita para jueves "+co.getFecha().getHours() +":"+co.getFecha().getMinutes());
-				
-				System.out.println("hora jueves:  "+patronHora.format(co.getFecha()));
-				System.out.println("minutos jueves:  "+patronMinuto.format(co.getFecha()));	
+				System.out.println("cita para jueves "+co.getFecha().getHours() +":"+co.getFecha().getMinutes());				
+//				System.out.println("hora jueves:  "+patronHora.format(co.getFecha()));		System.out.println("minutos jueves:  "+patronMinuto.format(co.getFecha()));	
 				mostrarCitaSegunIntervaloHora(co,"jueves");
 				tvJueves.setItems(citaListJueves);				
 			}else if (patroND.format(co.getFecha()).compareTo("vie")==0){
 				System.out.println("cita para viernes "+co.getFecha().getHours() +":"+co.getFecha().getMinutes());
-				System.out.println("hora viernes:  "+patronHora.format(co.getFecha()));
-				System.out.println("minutos viernes:  "+patronMinuto.format(co.getFecha()));		
+//				System.out.println("hora viernes:  "+patronHora.format(co.getFecha()));			System.out.println("minutos viernes:  "+patronMinuto.format(co.getFecha()));		
 				mostrarCitaSegunIntervaloHora(co,"viernes");
 				tvViernes.setItems(citaListViernes);
 			}			
@@ -320,130 +349,173 @@ public class CitasOdontologicasController{
 	}
 	
 	private void mostrarCitaSegunIntervaloHora(CitaOdontologica co, String dia){
+		System.out.println("cita segun intervalo hora");
 		Iterator<intervalosHora> ih = horaList.iterator();
 		int contador=0;
 		while (ih.hasNext()){
 			intervalosHora obj = ih.next();					
-//			System.out.println(" - + - + - + - + - "+obj.getIntervalo());
+			System.out.println(" - + - + - + - + - "+obj.getIntervalo());
 			String[] horas = obj.getIntervalo().split("-");
 			String[] inicio = horas[0].split(":");
 			String[] fin = horas[1].split(":");
-//			System.out.println("horas[0] "+horas[0]+" horas[1] "+horas[1]);
-//			System.out.println("inicio[0] "+inicio[0]+" inicio[1] "+inicio[1]);
-//			System.out.println("fin[0] "+fin[0]+" fin[1] "+fin[1]);
+			
 			if ( ( patronHora.format(co.getFecha()).compareTo(inicio[0]) == 0 ) &&
-				( Integer.parseInt(patronMinuto.format(co.getFecha())) >= Integer.parseInt(inicio[1])) && 
-				( Integer.parseInt(patronMinuto.format(co.getFecha())) < Integer.parseInt(fin[1]))	) {
-					System.out.println("pos: "+contador);
+					( patronHora.format(co.getFecha()).compareTo(fin[0]) == 0 ) &&
+					( Integer.parseInt(patronMinuto.format(co.getFecha())) >= Integer.parseInt(inicio[1])) && 
+					( Integer.parseInt(patronMinuto.format(co.getFecha())) < Integer.parseInt(fin[1]))	) {
+//					System.out.println("horas[0] "+horas[0]+" horas[1] "+horas[1]);			System.out.println("inicio[0] "+inicio[0]+" inicio[1] "+inicio[1]);
+//					System.out.println("fin[0] "+fin[0]+" fin[1] "+fin[1]);
+					System.out.println("pos de :00 a :30  : "+contador);
 					switch(dia){
-						case "lunes": citaListLunes.set(contador, co);
-					   				  break;
-						case "martes": citaListMartes.set(contador, co);
-		   				  			   break;
-						case "miercoles": citaListMiercoles.set(contador, co);
-		   				  			      break;
-						case "jueves": citaListJueves.set(contador, co);
-									   break;
-						case "viernes": citaListViernes.set(contador, co);
-		   				  		        break;
+						case "lunes": citaListLunes.set(contador, co);	  break;
+						case "martes": citaListMartes.set(contador, co);   break;
+						case "miercoles": citaListMiercoles.set(contador, co);	break;
+						case "jueves": citaListJueves.set(contador, co);	break;
+						case "viernes": citaListViernes.set(contador, co);   break;
 					}				
+			}else if ( ( patronHora.format(co.getFecha()).compareTo(inicio[0]) == 0 ) && 
+					( Integer.parseInt(patronHora.format(co.getFecha())) == Integer.parseInt(fin[0])-1 ) &&
+					( Integer.parseInt(patronMinuto.format(co.getFecha()))>=30 && Integer.parseInt(patronMinuto.format(co.getFecha()))<=59 )
+					){ 
+					System.out.println("pos de :30 a :00  : "+contador);
+					switch(dia){
+						case "lunes": citaListLunes.set(contador, co);	break;
+						case "martes": citaListMartes.set(contador, co);	break;
+						case "miercoles": citaListMiercoles.set(contador, co);	break;
+						case "jueves": citaListJueves.set(contador, co);	break;
+						case "viernes": citaListViernes.set(contador, co);	break;
+					}	
 			}
 			contador++;					
 		}
 	}
 	
-	private void actualizarCells(){
+	private void ModificarEliminarCita(){
+		System.out.println("eliminar o modificar!!!!");
+		ProgramaPrincipal.mostrarVentanaEliminarCita();		
+	}
+	
+	private void actualizarCells(){		
+			System.out.println("act cells");
 		
-		System.out.println("act cells");
-		
-		tvLunes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-		    @Override
-		    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-		        //Check whether item is selected and set value of selected item to Label
-		        if(tvLunes.getSelectionModel().getSelectedItem() != null){    
-		           TableViewSelectionModel<CitaOdontologica> selectionModel = tvLunes.getSelectionModel();
-		           ObservableList selectedCells = selectionModel.getSelectedCells();
-		           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-		           Object val = tablePosition.getTableColumn().getCellData(newValue);
-		           System.out.println("getrow lunes "+tablePosition.getRow());
-		           System.out.println("getcolumn "+tablePosition.getColumn());
-		           System.out.println("Selected Value " + val);
-		         }
-		    }
-	 });	
+			tvLunes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			    @Override
+			    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+			       
+			        if(tvLunes.getSelectionModel().getSelectedItem() != null){    
+			           TableViewSelectionModel<CitaOdontologica> selectionModel = tvLunes.getSelectionModel();
+			           ObservableList selectedCells = selectionModel.getSelectedCells();
+			           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+			           Object val = tablePosition.getTableColumn().getCellData(newValue);
+			           posNuevaCita = tablePosition.getRow();	
+			           
+			           if (val.toString().compareTo("     ")!=0){
+			        	   	System.out.println("eliminar lunes  "+posNuevaCita+": "+val.toString());
+			        	   	ModificarEliminarCita();
+			           }else  if (val.toString().compareTo("     ")==0){
+//			        	   System.out.println("Espacio libre " +tvLunes.getSelectionModel().getSelectedIndex());
+			           	   ContextoCronograma.getInstance().setDiaClick("lunes");AgregarCita();
+			           }
+			         }
+			    }
+		 });	
 	 
-	 tvMartes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-		    @Override
-		    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-		        //Check whether item is selected and set value of selected item to Label
-		        if(tvMartes.getSelectionModel().getSelectedItem() != null){    
-		           TableViewSelectionModel<CitaOdontologica> selectionModel = tvMartes.getSelectionModel();
-		           ObservableList selectedCells = selectionModel.getSelectedCells();
-		           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-		           Object val = tablePosition.getTableColumn().getCellData(newValue);
-		           System.out.println("getrow martes "+tablePosition.getRow());
-		           System.out.println("getcolumn "+tablePosition.getColumn());
-		           System.out.println("Selected Value " + val);
-		         }
-		    }
-	 });
+		 tvMartes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			    @Override
+			    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+			        
+			    	if(tvMartes.getSelectionModel().getSelectedItem() != null){    
+			           TableViewSelectionModel<CitaOdontologica> selectionModel = tvMartes.getSelectionModel();
+			           ObservableList selectedCells = selectionModel.getSelectedCells();
+			           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+			           Object val = tablePosition.getTableColumn().getCellData(newValue);
+			           posNuevaCita = tablePosition.getRow();
+			           
+			           if (val.toString().compareTo("     ")!=0){
+			        	    System.out.println("eliminar martes  "+posNuevaCita+": "+val.toString());
+			        		ModificarEliminarCita();
+			           }else  if (val.toString().compareTo("     ")==0){
+//			        	   System.out.println("Espacio libre " +tvMartes.getSelectionModel().getSelectedIndex());
+			               ContextoCronograma.getInstance().setDiaClick("martes");AgregarCita();
+			           }
+			         }
+			    }
+		 });
 	 
-	 tvMiercoles.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-		    @Override
-		    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-		        //Check whether item is selected and set value of selected item to Label
-		        if(tvMiercoles.getSelectionModel().getSelectedItem() != null) {    
-		           TableViewSelectionModel<CitaOdontologica> selectionModel = tvMiercoles.getSelectionModel();
-		           ObservableList selectedCells = selectionModel.getSelectedCells();
-		           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-		           Object val = tablePosition.getTableColumn().getCellData(newValue);
-		           System.out.println("getrow miercoles "+tablePosition.getRow());
-		           System.out.println("getcolumn "+tablePosition.getColumn());
-		           System.out.println("Selected Value " + val);
-		         }
-		    }
-	 });
+		 tvMiercoles.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			    @Override
+			    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+			        			    	
+			        if(tvMiercoles.getSelectionModel().getSelectedItem() != null) {    
+			           TableViewSelectionModel<CitaOdontologica> selectionModel = tvMiercoles.getSelectionModel();
+			           ObservableList selectedCells = selectionModel.getSelectedCells();
+			           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+			           Object val = tablePosition.getTableColumn().getCellData(newValue);
+			           posNuevaCita = tablePosition.getRow();
+			          
+			           if (val.toString().compareTo("     ")!=0){
+			        	   	System.out.println("eliminar miercoles  "+posNuevaCita+": "+val.toString());
+			        		ModificarEliminarCita();
+			           }else  if (val.toString().compareTo("     ")==0){
+//			        	   System.out.println("Espacio libre " +tvMiercoles.getSelectionModel().getSelectedIndex());
+			        	   ContextoCronograma.getInstance().setDiaClick("miercoles");AgregarCita();
+			           }
+			         }
+			    }
+		 });
 	 
-	 tvJueves.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-		    @Override
-		    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-		        //Check whether item is selected and set value of selected item to Label
-		        if(tvJueves.getSelectionModel().getSelectedItem() != null){    
-		           TableViewSelectionModel<CitaOdontologica> selectionModel = tvJueves.getSelectionModel();
-		           ObservableList selectedCells = selectionModel.getSelectedCells();
-		           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-		           Object val = tablePosition.getTableColumn().getCellData(newValue);
-		           System.out.println("getrow jueves "+tablePosition.getRow());
-		           System.out.println("getcolumn "+tablePosition.getColumn());
-		           System.out.println("Selected Value " + val);
-		         }
-		    }
-	 });
+		 tvJueves.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			    @Override
+			    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+			       
+			    	if(tvJueves.getSelectionModel().getSelectedItem() != null){    
+			           TableViewSelectionModel<CitaOdontologica> selectionModel = tvJueves.getSelectionModel();
+			           ObservableList selectedCells = selectionModel.getSelectedCells();
+			           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+			           Object val = tablePosition.getTableColumn().getCellData(newValue);
+			           posNuevaCita = tablePosition.getRow();
+			           
+			           if (val.toString().compareTo("     ")!=0){
+			        	    System.out.println("eliminar jueves  "+posNuevaCita+": "+val.toString());
+			        		ModificarEliminarCita();
+			           }else  if (val.toString().compareTo("     ")==0){
+//			        	   System.out.println("Espacio libre " +tvJueves.getSelectionModel().getSelectedIndex());
+			           	   ContextoCronograma.getInstance().setDiaClick("jueves");AgregarCita();
+			           }
+			        }
+			    }
+		 });
 	 
-	 tvViernes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-		    @Override
-		    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-		        //Check whether item is selected and set value of selected item to Label
-		        if(tvViernes.getSelectionModel().getSelectedItem() != null){    
-		           TableViewSelectionModel<CitaOdontologica> selectionModel = tvViernes.getSelectionModel();
-		           ObservableList selectedCells = selectionModel.getSelectedCells();
-		           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-		           Object val = tablePosition.getTableColumn().getCellData(newValue);
-		           System.out.println("getrow viernes "+tablePosition.getRow());
-		           System.out.println("getcolumn "+tablePosition.getColumn());
-		           System.out.println("Selected Value " + val);
-		         }
-		    }
-	 });
+		 tvViernes.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			    @Override
+			    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
+			        
+			    	if(tvViernes.getSelectionModel().getSelectedItem() != null){    
+			           TableViewSelectionModel<CitaOdontologica> selectionModel = tvViernes.getSelectionModel();
+			           ObservableList selectedCells = selectionModel.getSelectedCells();
+			           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+			           Object val = tablePosition.getTableColumn().getCellData(newValue);
+			           posNuevaCita = tablePosition.getRow();
+			           
+			           if (val.toString().compareTo("     ")!=0){
+			        	   	System.out.println("eliminar viernes  "+posNuevaCita+": "+val.toString());
+			        		ModificarEliminarCita();
+			           }else  if (val.toString().compareTo("     ")==0){
+//			        	   System.out.println("Espacio libre " +tvViernes.getSelectionModel().getSelectedIndex());
+			        	   ContextoCronograma.getInstance().setDiaClick("viernes");AgregarCita();
+			           }
+			        }
+			    }
+		 });
 		
 		 tcLunes.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CitaOdontologica, String>, ObservableValue<String>>(){
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<CitaOdontologica, String> arg0) {
 
-					if (arg0.getValue()!=null){
+					if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 						if (arg0.getValue().getFecha().getDay()==1){
-							System.out.println("la hora de lunes: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
-							return new SimpleStringProperty(""+arg0.getValue().getObservacion());
+//							System.out.println("la hora de lunes: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
+							return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
 						}else return new SimpleStringProperty("     ");
 					}else return new SimpleStringProperty("     ");
 				}			
@@ -452,10 +524,10 @@ public class CitasOdontologicasController{
 				@Override
 				public ObservableValue<String> call(CellDataFeatures<CitaOdontologica, String> arg0) {
 					
-					if (arg0.getValue()!=null){
+					if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 						if (arg0.getValue().getFecha().getDay()==2){
-							System.out.println("la hora de martes: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
-							return new SimpleStringProperty(""+arg0.getValue().getObservacion());
+//							System.out.println("la hora de martes: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
+							return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
 						}else return new SimpleStringProperty("     ");
 					}else return new SimpleStringProperty("     ");
 					}			
@@ -464,10 +536,10 @@ public class CitasOdontologicasController{
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<CitaOdontologica, String> arg0) {
 			
-				if (arg0.getValue()!=null){	
+				if (arg0.getValue().getObservacion().compareTo("libre")!=0){	
 					if (arg0.getValue().getFecha().getDay()==3){
-						System.out.println("la hora de miercoles: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
-						return new SimpleStringProperty(""+arg0.getValue().getObservacion());
+//						System.out.println("la hora de miercoles: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
+						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
 					}else return new SimpleStringProperty("     ");
 				}else return new SimpleStringProperty("     ");
 				}			
@@ -476,10 +548,10 @@ public class CitasOdontologicasController{
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<CitaOdontologica, String> arg0) {
 								
-				if (arg0.getValue()!=null){
+				if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 					if (arg0.getValue().getFecha().getDay()==4){
-						System.out.println("la hora de jueves: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
-						return new SimpleStringProperty(""+arg0.getValue().getObservacion());
+//						System.out.println("la hora de jueves: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
+						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
 					}else return new SimpleStringProperty("     ");
 				}else return new SimpleStringProperty("     ");
 			}			
@@ -488,20 +560,195 @@ public class CitasOdontologicasController{
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<CitaOdontologica, String> arg0) {
 				
-				if (arg0.getValue()!=null){
+				if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 					if (arg0.getValue().getFecha().getDay()==5){
-						System.out.println("la hora de viernes: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
-						return new SimpleStringProperty(""+arg0.getValue().getObservacion());
+//						System.out.println("la hora de viernes: "+arg0.getValue().getFecha().getHours() + ":" + arg0.getValue().getFecha().getMinutes());
+						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
 					}else return new SimpleStringProperty("     ");
 				}else return new SimpleStringProperty("     ");
 			}			
-		});			
-		
+		});					
 	}	
+	 
+	@FXML
+	private void actionMouseEnter(){
+		System.out.println("el mouse mouse mouse");
+		
+		if (ContextoCronograma.getInstance().getPaciente()!=null && !ContextoCronograma.getInstance().getBanderaVentana()){
+			ContextoCronograma.getInstance().setBanderaVentana(true);
+			System.out.println(" en citaodontologica:   o/ o// "+ContextoCronograma.getInstance().getPaciente().getPersona().getApellidos());
+			System.out.println("dia para la nueva cita: "+ContextoCronograma.getInstance().getDiaClick());			
+			switch (ContextoCronograma.getInstance().getDiaClick()){
+				case "lunes":   System.out.println("size lunes "+citaListLunes.size());
+								posNuevaLunes=posNuevaLunes+""+posNuevaCita;	
+								posicionarNuevaCita(citaListLunes, 0);
+								tvLunes.getSelectionModel().clearSelection();
+								break;
+				case "martes":  System.out.println("size martes "+citaListMartes.size());
+								posNuevaMartes=posNuevaMartes+""+posNuevaCita;	
+								posicionarNuevaCita(citaListMartes, 1);
+								tvMartes.getSelectionModel().clearSelection();
+								break;
+				case "miercoles":  System.out.println("size miercoles "+citaListMiercoles.size());
+								   posNuevaMiercoles=posNuevaMiercoles+""+posNuevaCita;	
+								   posicionarNuevaCita(citaListMiercoles, 2);
+								   tvMiercoles.getSelectionModel().clearSelection();
+								   break;
+				case "jueves":  System.out.println("size jueves "+citaListJueves.size());
+								posNuevaJueves=posNuevaJueves+""+posNuevaCita;	
+								posicionarNuevaCita(citaListJueves, 3);
+								tvJueves.getSelectionModel().clearSelection();
+								break;
+				case "viernes": System.out.println("size viernes "+citaListViernes.size());
+								posNuevaViernes=posNuevaViernes+""+posNuevaCita;	
+								posicionarNuevaCita(citaListViernes, 4);
+								tvViernes.getSelectionModel().clearSelection();
+								break;
+			}			
+		}
+	}
+	
+	private void posicionarNuevaCita(ObservableList<CitaOdontologica> lista, int diaSemana){
+		System.out.println(" &  &   &   &   &   dia semana:   "+diaSemana);
+
+		CitaOdontologica citaO = new CitaOdontologica();
+		
+		citaO.setDoctor(DoctorList.get(posDoctorSeleccionado));								
+		citaO.setPaciente(ContextoCronograma.getInstance().getPaciente());
+		citaO.setObservacion(ContextoCronograma.getInstance().getObservacionCita());
+		
+		if (turno)	citaO.setAMPM("PM");
+		else	citaO.setAMPM("AM");
+		
+		String fechaamd = semana.get(diaSemana).substring(8)+"-"+semana.get(diaSemana).substring(5,7)+"-"+semana.get(diaSemana).substring(0,4)+" "+horaList.get(posNuevaCita).getIntervalo().substring(0,4);
+		System.out.println("anho mes dia h:mm "+fechaamd);	
+		String dateInString = fechaamd;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy h:mm");		 
+		try {
+			Date date = sdf.parse(dateInString);
+			citaO.setFecha(date);
+		} catch (ParseException e) {	e.printStackTrace(); }				
+		lista.remove(posNuevaCita);							
+		lista.add(posNuevaCita, citaO);
+		
+		Iterator<CitaOdontologica> ite = lista.iterator();
+		while (ite.hasNext()){
+			CitaOdontologica oco = ite.next();
+			System.out.println(oco.getObservacion());
+		}
+		System.out.println("fin lista nuevaaa");
+	}
+		
+	private void AgregarCita(){
+		 System.out.println(" ????     ???????????????????????????????????????????????????????? ");
+		 System.out.println(" ???????????????????                    ?????????????????????????? ");
+		 System.out.println(" ??????????????????????????????????????????????????         ?????? ");
+		 ProgramaPrincipal.mostrarVentanaNuevaCita();		 
+	}
 	
 	@FXML
-	private void actionAgregarCita(){	
-		System.out.println("agregar cita");
+	private void actionGuardarCita(){	
+		System.out.println("guardar cita li: "+citaListLunes.size()+" ma: "+citaListMartes.size());
+		System.out.println(" mi: "+citaListMiercoles.size()+" ju: "+citaListJueves.size()+" vi: "+citaListViernes.size());
+		
+		System.out.println("LUNES");
+		Iterator<CitaOdontologica> i = citaListLunes.iterator();
+		while (i.hasNext()){
+			CitaOdontologica co = i.next();
+			if (!co.getObservacion().equals("libre"))
+				System.out.println(""+co+" "+co.getObservacion());
+		}
+		System.out.println("MARTES");
+		i = citaListMartes.iterator();
+		while (i.hasNext()){
+			CitaOdontologica co = i.next();
+			if (!co.getObservacion().equals("libre"))
+				System.out.println(""+co+" "+co.getObservacion());
+		}
+		System.out.println("MIERCOLES");
+		i = citaListMiercoles.iterator();
+		while (i.hasNext()){
+			CitaOdontologica co = i.next();
+			if (!co.getObservacion().equals("libre"))
+				System.out.println(""+co+" "+co.getObservacion());
+		}
+		System.out.println("JUEVES");
+		i = citaListJueves.iterator();
+		while (i.hasNext()){
+			CitaOdontologica co = i.next();
+			if (!co.getObservacion().equals("libre"))
+				System.out.println(""+co+" "+co.getObservacion());
+		}
+		System.out.println("VIERNES");
+		i = citaListViernes.iterator();
+		while (i.hasNext()){
+			CitaOdontologica co = i.next();
+			if (!co.getObservacion().equals("libre"))
+				System.out.println(""+co+" "+co.getObservacion());
+		}
+		System.out.println("- - - - - - - - - - - ");
+		System.out.println("Lunes: "+posNuevaLunes);
+		System.out.println("Martes: "+posNuevaMartes);
+		System.out.println("Miercoles: "+posNuevaMiercoles);
+		System.out.println("Jueves: "+posNuevaJueves);
+		System.out.println("Viernes: "+posNuevaViernes);
+		System.out.println("- - - - - - - - - - - ");
+		int pos=0;
+		
+		if (!posNuevaLunes.equals("")){
+			char [] prov = posNuevaLunes.toCharArray();
+			for (int f=0;f<prov.length;f++){
+				pos = Integer.parseInt(prov[f]+"");
+				guardarNuevaCitaBD(citaListLunes.get(pos));
+			}
+		}else
+			System.out.println("no hay citas nuevas en lunes");
+		
+		if (!posNuevaMartes.equals("")){
+			char [] prov = posNuevaMartes.toCharArray();		
+			
+			for (int f=0;f<prov.length;f++){
+				 pos = Integer.parseInt(prov[f]+"");
+				 guardarNuevaCitaBD(citaListMartes.get(pos));
+			}
+		}else
+			System.out.println("no hay citas nuevas en martes");
+		
+		if (!posNuevaMiercoles.equals("")){
+			char [] prov = posNuevaMiercoles.toCharArray();			
+			for (int f=0;f<prov.length;f++){
+				pos = Integer.parseInt(prov[f]+"");
+				guardarNuevaCitaBD(citaListMiercoles.get(pos));
+			}
+		}else
+			System.out.println("no hay citas nuevas en miercoles");
+		
+		if (!posNuevaJueves.equals("")){
+			char [] prov = posNuevaJueves.toCharArray();		
+			
+			for (int f=0;f<prov.length;f++){
+				 pos = Integer.parseInt(prov[f]+"");
+				 guardarNuevaCitaBD(citaListJueves.get(pos));
+			}
+		}else
+			System.out.println("no hay citas nuevas en jueves");
+		
+		if (!posNuevaViernes.equals("")){
+			char [] prov = posNuevaViernes.toCharArray();		
+			
+			for (int f=0;f<prov.length;f++){
+				 pos = Integer.parseInt(prov[f]+"");
+				 guardarNuevaCitaBD(citaListViernes.get(pos));
+			}
+		}else
+			System.out.println("no hay citas nuevas en viernes");
+				
+	}
+	
+	private void guardarNuevaCitaBD(CitaOdontologica cita){		
+		Session sesion = openSesion();			
+		sesion.saveOrUpdate(cita);		
+		closeSesion(sesion);
 	}
 				
 	public void algoritmoHora(Calendar cal, Calendar calendar, String horainicio, String horafinal, int intervalo, int horaInicioJornada, int horaFinalJornada, int minInicioJornada, int minFinalJornada){
@@ -546,7 +793,7 @@ public class CitasOdontologicasController{
 		Calendar calendar = Calendar.getInstance();
 		
 		String horainicio = "", horafinal = "";
-		int intervalo = 30, horaInicioJornada = 7, minInicioJornada = 0, horaFinalJornada = 11, minFinalJornada=30; 	
+		int intervalo = 30, horaInicioJornada = 07, minInicioJornada = 00, horaFinalJornada = 11, minFinalJornada=30; 	
 								
 		algoritmoHora(cal, calendar, horainicio, horafinal, intervalo, horaInicioJornada, horaFinalJornada, minInicioJornada, minFinalJornada);
 	}
@@ -556,7 +803,7 @@ public class CitasOdontologicasController{
 		Calendar calendar = Calendar.getInstance();
 	
 		String horainicio = "", horafinal = "";
-		int intervalo = 30, horaInicioJornada = 1, minInicioJornada = 0, horaFinalJornada = 5, minFinalJornada=30; 	
+		int intervalo = 30, horaInicioJornada = 01, minInicioJornada = 00, horaFinalJornada = 05, minFinalJornada=30; 	
 								
 		algoritmoHora(cal, calendar, horainicio, horafinal, intervalo, horaInicioJornada, horaFinalJornada, minInicioJornada, minFinalJornada);			
 	}
@@ -569,6 +816,11 @@ public class CitasOdontologicasController{
 	
 	private void closeSesion(Session sesion){		
 		sesion.getTransaction().commit();
+	}
+	
+	public void setProgramaPrincipal(Ventanas ProgramaPrincipal) {
+		 System.out.println("Controlador cronograma cita odonotologica - setPP");
+		 this.ProgramaPrincipal = ProgramaPrincipal;
 	}
 	
 }

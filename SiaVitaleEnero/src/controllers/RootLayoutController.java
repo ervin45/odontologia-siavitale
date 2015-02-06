@@ -50,6 +50,8 @@ public class RootLayoutController {
 	HorariosTurnosV HorariosTurnosVentana;
 	CitasOdontologicasV CitasOdonotologicasVentana;
 	
+	private Ventanas ProgramaPrincipal = new Ventanas();
+	
 	@FXML
 	private void botonDescriGral() {
 //		if (DescriGralVentana==null)
@@ -377,9 +379,7 @@ public class RootLayoutController {
 
 	 @FXML
 	 private void botonCitas(){
-		 System.out.println("...citas....");
-		 CitasOdonotologicasVentana = null;
-		 CitasOdonotologicasVentana = new CitasOdontologicasV();
-		 CitasOdonotologicasVentana.start(new Stage());		 
+		 System.out.println("Ejecuta la ventana de cronograma cita");
+		 ProgramaPrincipal.mostrarVentanaCronogramaCita();	 
 	 }
 }
