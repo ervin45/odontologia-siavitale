@@ -27,7 +27,10 @@ public class NuevaCitaOdontologicaController{
 	private TextField tfObservacion;
 	
 	@FXML
-	private Button btAgregarCita;
+	private Button bAgregarCita;
+	
+	@FXML
+	private Button bCancelar;
 	
 	ObservableList<Paciente> PacienteList = FXCollections.observableArrayList();
 	private ObservableList<String> opcionPaciente = FXCollections.observableArrayList();	
@@ -54,7 +57,7 @@ public class NuevaCitaOdontologicaController{
 	@FXML
 	private void actionAgregarCita(){
 		System.out.println("boton agregar cita");
-		
+		ContextoCronograma.getInstance().setBanderaVentNuevaCita(false);
 		if (cbPaciente.getSelectionModel().getSelectedIndex()!=-1){
 			System.out.println("listo "+cbPaciente.getSelectionModel().getSelectedIndex());
 			System.out.println("listo "+PacienteList.get(cbPaciente.getSelectionModel().getSelectedIndex()).getPersona().getNombres()+", "+PacienteList.get(cbPaciente.getSelectionModel().getSelectedIndex()).getPersona().getApellidos());
@@ -62,11 +65,19 @@ public class NuevaCitaOdontologicaController{
 			System.out.println("paciente: "+ContextoCronograma.getInstance().getPaciente().getPersona().getNombres()+"   ......");
 			ContextoCronograma.getInstance().setBanderaVentana(false);
 			ContextoCronograma.getInstance().setObservacionCita(tfObservacion.getText());
-			Stage stage = (Stage) btAgregarCita.getScene().getWindow();
+			Stage stage = (Stage) bAgregarCita.getScene().getWindow();
 			stage.close();
 		}else
 			System.out.println("seleccione paciente");
 		
+	}
+	
+	@FXML
+	private void actionCancelar(){
+		System.out.println("boton cancelar nueva cita");	
+		ContextoCronograma.getInstance().setBanderaVentNuevaCita(false);
+		Stage stage = (Stage) bCancelar.getScene().getWindow();
+		stage.close();
 	}
 	
 	

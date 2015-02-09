@@ -13,7 +13,10 @@ import javafx.stage.Stage;
 public class EliminarCitaOdontologicaController{	
 	
 	@FXML
-	private Button btEliminarCita;
+	private Button bEliminarCita;
+	
+	@FXML
+	private Button bCancelar;
 	
 	private Ventanas ProgramaPrincipal = new Ventanas();
 			
@@ -28,6 +31,19 @@ public class EliminarCitaOdontologicaController{
 	@FXML
 	private void actionEliminarCita(){
 		System.out.println("boton eliminar cita");	
+		ContextoCronograma.getInstance().setBanderaEliminarCita(true);
+		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
+		Stage stage = (Stage) bEliminarCita.getScene().getWindow();
+		stage.close();
+	}
+	
+	@FXML
+	private void actionCancelar(){
+		System.out.println("boton cancelar eliminar cita");	
+		ContextoCronograma.getInstance().setBanderaEliminarCita(false);
+		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
+		Stage stage = (Stage) bEliminarCita.getScene().getWindow();
+		stage.close();
 		
 	}
 	

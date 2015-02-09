@@ -76,7 +76,7 @@
                 </ImageView>
             </graphic>
     	</Button>    	
-    	<Button fx:id="btAgregarCita" disable="true" layoutX="120.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionGuardarCita" text="">
+    	<Button fx:id="bGuardarCitaBD" disable="true" layoutX="120.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionGuardarCita" text="">
             <graphic>
                 <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                   <image>
