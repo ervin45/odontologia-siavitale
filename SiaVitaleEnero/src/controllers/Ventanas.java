@@ -41,7 +41,7 @@ public class Ventanas extends Application{
 	
 	public void mostrarVentanaNuevaCita(){
 		System.out.println("mostrar ventana nueva cita");
-    	
+		
     	try{
     		FXMLLoader loader = new FXMLLoader(Ventanas.class.getResource("NuevaCitaOdontologica.fxml"));
     		AnchorPane ventanaR = (AnchorPane) loader.load();

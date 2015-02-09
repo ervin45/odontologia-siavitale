@@ -9,7 +9,10 @@ public class ContextoCronograma {
 	private Paciente Paciente;
 	private String diaClick;
 	private boolean banderaVentana;
+	private boolean banderaVentNuevaCita;
+	private boolean banderaVentEliminarCita;
 	private String observacionCita;
+	private boolean banderaEliminarCita;
 	
 	public static ContextoCronograma getInstance() {
         return instance;        
@@ -45,7 +48,30 @@ public class ContextoCronograma {
 
 	public void setObservacionCita(String observacion) {
 		observacionCita = observacion;
-	}		
-	
+	}
+
+	public boolean getBanderaVentNuevaCita() {
+		return banderaVentNuevaCita;
+	}
+
+	public void setBanderaVentNuevaCita(boolean banderaVentNuevaCita) {
+		this.banderaVentNuevaCita = banderaVentNuevaCita;
+	}
+
+	public boolean getBanderaEliminarCita() {
+		return banderaEliminarCita;
+	}
+
+	public void setBanderaEliminarCita(boolean banderaEliminarCita) {
+		this.banderaEliminarCita = banderaEliminarCita;
+	}
+
+	public boolean getBanderaVentEliminarCita() {
+		return banderaVentEliminarCita;
+	}
+
+	public void setBanderaVentEliminarCita(boolean banderaVentEliminarCita) {
+		this.banderaVentEliminarCita = banderaVentEliminarCita;
+	}	
 	
 }

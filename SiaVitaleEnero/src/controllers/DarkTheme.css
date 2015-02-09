@@ -65,6 +65,12 @@
     -fx-opacity: 0.6;
 }
 
+.labelazul{
+	-fx-text-fill: #4682B4;
+	-fx-font-family: "Tahoma";
+	-fx-font-size: 16px;
+}
+
 
 .label {
     -fx-font-size: 13pt;
