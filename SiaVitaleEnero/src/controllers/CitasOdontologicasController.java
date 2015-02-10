@@ -1,18 +1,11 @@
 package controllers;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javassist.util.HotSwapper;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -26,25 +19,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class CitasOdontologicasController{	
@@ -96,6 +81,14 @@ public class CitasOdontologicasController{
 	@FXML
 	private Button bGuardarCitaBD;
 	
+	@FXML
+	private Label lMsjRegistroExito;
+	
+	@FXML
+	private Label lMsjEliminacionExito;
+	
+	@FXML
+	private Label lMsjSeleccioneFecha;
 	
 	intervalosHora ih;
 	
@@ -106,8 +99,7 @@ public class CitasOdontologicasController{
 	ObservableList<CitaOdontologica> citaListMiercoles = FXCollections.observableArrayList();
 	ObservableList<CitaOdontologica> citaListJueves = FXCollections.observableArrayList();
 	ObservableList<CitaOdontologica> citaListViernes = FXCollections.observableArrayList();
-	
-	
+		
 	String posNuevaLunes="", posNuevaMartes="", posNuevaMiercoles="", posNuevaJueves="", posNuevaViernes="";
 	
 	ObservableList<Doctor> DoctorList = FXCollections.observableArrayList();
@@ -174,13 +166,36 @@ public class CitasOdontologicasController{
 					posDoctorSeleccionado=arg2.intValue();
 					idDoctorSeleccionado=DoctorList.get(arg2.intValue()).getId();					
 					posNuevaLunes=posNuevaMartes=posNuevaMiercoles=posNuevaJueves=posNuevaViernes="";
+					lMsjRegistroExito.setVisible(false);
+					lMsjEliminacionExito.setVisible(false);
+					
+					citaListLunes.clear();		citaListMartes.clear();
+					citaListMiercoles.clear();	citaListJueves.clear();	
+					citaListViernes.clear();
+					CitaOdontologica oco = new CitaOdontologica();	oco.setObservacion("libre");
+					for (int e=0;e<9;e++){
+						citaListLunes.add(oco);		citaListMartes.add(oco);
+						citaListMiercoles.add(oco);		citaListJueves.add(oco);
+						citaListViernes.add(oco);			
+					}						
+					tvLunes.setItems(citaListLunes);	tvMartes.setItems(citaListMartes);
+					tvMiercoles.setItems(citaListMiercoles);	tvJueves.setItems(citaListJueves);
+					tvViernes.setItems(citaListViernes);
+					if (dpFecha.getSelectedDate()!=null){
+						lMsjSeleccioneFecha.setVisible(false);
+						semana.clear();
+						cargarSemana(dpFecha.getSelectedDate());
+					}else{
+						lMsjSeleccioneFecha.setVisible(true);
+					}
 				}				
 		}});		
 	}	
 
 	@FXML
 	private void actionTurnoPM(){
-		bGuardarCitaBD.setDisable(true);
+		lMsjRegistroExito.setVisible(false);	lMsjEliminacionExito.setVisible(false);
+		lMsjSeleccioneFecha.setVisible(false);	bGuardarCitaBD.setDisable(true);
 		horaList.clear();cargarHorasPM();tvHorario.setItems(horaList);
 		posNuevaLunes=posNuevaMartes=posNuevaMiercoles=posNuevaJueves=posNuevaViernes="";
 		turno=true;		
@@ -200,13 +215,15 @@ public class CitasOdontologicasController{
 		if (dpFecha.getSelectedDate()!=null){
 			semana.clear();
 			cargarSemana(dpFecha.getSelectedDate());
-		}else
-			System.out.println("- * - * - * - * / * /* Seleccione fecha * - * - /* - /* - /* - *");
+		}else{
+			lMsjSeleccioneFecha.setVisible(true);
+		}
 	}
 	
 	@FXML
 	private void actionTurnoAM(){	
-		bGuardarCitaBD.setDisable(true);
+		lMsjRegistroExito.setVisible(false);	lMsjEliminacionExito.setVisible(false);		
+		lMsjSeleccioneFecha.setVisible(false);	bGuardarCitaBD.setDisable(true);
 		horaList.clear();cargarHorasAM();tvHorario.setItems(horaList);
 		posNuevaLunes=posNuevaMartes=posNuevaMiercoles=posNuevaJueves=posNuevaViernes="";
 		turno=false;		
@@ -225,8 +242,9 @@ public class CitasOdontologicasController{
 		if (dpFecha.getSelectedDate()!=null){
 			semana.clear();
 			cargarSemana(dpFecha.getSelectedDate());
-		}else
-			System.out.println("- * - * - * - * / * /* Seleccione fecha * - * - /* - /* - /* - *");
+		}else{
+			lMsjSeleccioneFecha.setVisible(true);
+		}
 	}	
 
 	private void cargarSemana(Date fechaSeleccionada){
@@ -368,9 +386,10 @@ public class CitasOdontologicasController{
 			           Object val = tablePosition.getTableColumn().getCellData(newValue);
 			           posNuevaCita = tablePosition.getRow();	
 			           ContextoCronograma.getInstance().setDiaClick("lunes");
-			           
+			           lMsjEliminacionExito.setVisible(false);
+			           lMsjRegistroExito.setVisible(false);
 			           if (val.toString().compareTo("     ")!=0){
-			        	   	if (!ContextoCronograma.getInstance().getBanderaVentEliminarCita()){
+			        	   	if (!ContextoCronograma.getInstance().getBanderaVentEliminarCita()){			        	   		
 			        	   		EliminarCita();
 			        	   	}
 			           }else  if (val.toString().compareTo("     ")==0){			           	   
@@ -392,7 +411,8 @@ public class CitasOdontologicasController{
 			           Object val = tablePosition.getTableColumn().getCellData(newValue);
 			           posNuevaCita = tablePosition.getRow();
 			           ContextoCronograma.getInstance().setDiaClick("martes");
-			           
+			           lMsjEliminacionExito.setVisible(false);
+			           lMsjRegistroExito.setVisible(false);
 			           if (val.toString().compareTo("     ")!=0){
 			        	    if (!ContextoCronograma.getInstance().getBanderaVentEliminarCita()){
 			        	    	EliminarCita();
@@ -416,7 +436,8 @@ public class CitasOdontologicasController{
 			           Object val = tablePosition.getTableColumn().getCellData(newValue);
 			           posNuevaCita = tablePosition.getRow();
 			           ContextoCronograma.getInstance().setDiaClick("miercoles");
-			           
+			           lMsjEliminacionExito.setVisible(false);
+			           lMsjRegistroExito.setVisible(false);
 			           if (val.toString().compareTo("     ")!=0){
 			        	   	if (!ContextoCronograma.getInstance().getBanderaVentEliminarCita()){
 			        	   		EliminarCita();
@@ -440,7 +461,8 @@ public class CitasOdontologicasController{
 			           Object val = tablePosition.getTableColumn().getCellData(newValue);
 			           posNuevaCita = tablePosition.getRow();
 			           ContextoCronograma.getInstance().setDiaClick("jueves");
-			           
+			           lMsjEliminacionExito.setVisible(false);
+			           lMsjRegistroExito.setVisible(false);
 			           if (val.toString().compareTo("     ")!=0){
 			        	    System.out.println("eliminar jueves  "+posNuevaCita+": "+val.toString());
 			        	    if (!ContextoCronograma.getInstance().getBanderaVentEliminarCita()){
@@ -465,7 +487,8 @@ public class CitasOdontologicasController{
 			           Object val = tablePosition.getTableColumn().getCellData(newValue);
 			           posNuevaCita = tablePosition.getRow();
 			           ContextoCronograma.getInstance().setDiaClick("viernes");
-			           
+			           lMsjEliminacionExito.setVisible(false);
+			           lMsjRegistroExito.setVisible(false);
 			           if (val.toString().compareTo("     ")!=0){
 			        	   	if (!ContextoCronograma.getInstance().getBanderaVentEliminarCita()){
 			        	   		EliminarCita();
@@ -484,7 +507,8 @@ public class CitasOdontologicasController{
 
 					if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 						if (arg0.getValue().getFecha().getDay()==1){
-							return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+//							return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+							return new SimpleStringProperty(""+arg0.getValue().getObservacion());
 						}else return new SimpleStringProperty("     ");
 					}else return new SimpleStringProperty("     ");
 				}			
@@ -495,7 +519,8 @@ public class CitasOdontologicasController{
 					
 					if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 						if (arg0.getValue().getFecha().getDay()==2){
-							return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+//							return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+							return new SimpleStringProperty(""+arg0.getValue().getObservacion());
 						}else return new SimpleStringProperty("     ");
 					}else return new SimpleStringProperty("     ");
 					}			
@@ -506,7 +531,8 @@ public class CitasOdontologicasController{
 			
 				if (arg0.getValue().getObservacion().compareTo("libre")!=0){	
 					if (arg0.getValue().getFecha().getDay()==3){
-						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+//						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+						return new SimpleStringProperty(""+arg0.getValue().getObservacion());
 					}else return new SimpleStringProperty("     ");
 				}else return new SimpleStringProperty("     ");
 				}			
@@ -517,7 +543,8 @@ public class CitasOdontologicasController{
 								
 				if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 					if (arg0.getValue().getFecha().getDay()==4){
-						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+//						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+						return new SimpleStringProperty(""+arg0.getValue().getObservacion());
 					}else return new SimpleStringProperty("     ");
 				}else return new SimpleStringProperty("     ");
 			}			
@@ -528,7 +555,8 @@ public class CitasOdontologicasController{
 				
 				if (arg0.getValue().getObservacion().compareTo("libre")!=0){
 					if (arg0.getValue().getFecha().getDay()==5){
-						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+//						return new SimpleStringProperty(""+arg0.getValue().getPaciente().getPersona().getNombres()+" "+arg0.getValue().getPaciente().getPersona().getApellidos());
+						return new SimpleStringProperty(""+arg0.getValue().getObservacion());
 					}else return new SimpleStringProperty("     ");
 				}else return new SimpleStringProperty("     ");
 			}			
@@ -538,6 +566,9 @@ public class CitasOdontologicasController{
 	@FXML
 	private void actionMouseEnter(){
 		System.out.println(" -* - - - - - - mouse volvio a cronograma - - - - - - *-");
+		tvLunes.getSelectionModel().clearSelection();		tvMartes.getSelectionModel().clearSelection();
+		tvMiercoles.getSelectionModel().clearSelection();		tvJueves.getSelectionModel().clearSelection();
+		tvViernes.getSelectionModel().clearSelection();
 		
 		if (ContextoCronograma.getInstance().getPaciente()!=null && !ContextoCronograma.getInstance().getBanderaVentana()){
 			ContextoCronograma.getInstance().setBanderaVentana(true);			
@@ -545,27 +576,22 @@ public class CitasOdontologicasController{
 				case "lunes":   System.out.println("size lunes "+citaListLunes.size());
 								posNuevaLunes=posNuevaLunes+""+posNuevaCita;	
 								posicionarNuevaCita(citaListLunes, 0);
-								tvLunes.getSelectionModel().clearSelection();
 								break;
 				case "martes":  System.out.println("size martes "+citaListMartes.size());
 								posNuevaMartes=posNuevaMartes+""+posNuevaCita;	
 								posicionarNuevaCita(citaListMartes, 1);
-								tvMartes.getSelectionModel().clearSelection();
 								break;
 				case "miercoles":  System.out.println("size miercoles "+citaListMiercoles.size());
 								   posNuevaMiercoles=posNuevaMiercoles+""+posNuevaCita;	
 								   posicionarNuevaCita(citaListMiercoles, 2);
-								   tvMiercoles.getSelectionModel().clearSelection();
 								   break;
 				case "jueves":  System.out.println("size jueves "+citaListJueves.size());
 								posNuevaJueves=posNuevaJueves+""+posNuevaCita;	
 								posicionarNuevaCita(citaListJueves, 3);
-								tvJueves.getSelectionModel().clearSelection();
 								break;
 				case "viernes": System.out.println("size viernes "+citaListViernes.size());
 								posNuevaViernes=posNuevaViernes+""+posNuevaCita;	
 								posicionarNuevaCita(citaListViernes, 4);
-								tvViernes.getSelectionModel().clearSelection();
 								break;
 			}
 			bGuardarCitaBD.setDisable(false);
@@ -614,6 +640,7 @@ public class CitasOdontologicasController{
 								citaListViernes.add(posNuevaCita, oco);
 								break;
 			}
+			lMsjEliminacionExito.setVisible(true);
 		}	
 	}
 	
@@ -749,6 +776,7 @@ public class CitasOdontologicasController{
 		Session sesion = openSesion();			
 		sesion.saveOrUpdate(cita);		
 		closeSesion(sesion);
+		lMsjRegistroExito.setVisible(true);
 	}
 	
 	private void eliminarCitaBD(CitaOdontologica cita){		
