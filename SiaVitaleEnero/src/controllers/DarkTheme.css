@@ -32,8 +32,8 @@
     -fx-background-repeat: no-repeat;   
     -fx-background-size: cover;
     -fx-background-position: center center;
-/*     -fx-effect: dropshadow(three-pass-box, white, 30, 0.5, 0, 0); 
-   */ 
+/*     -fx-effect: dropshadow(three-pass-box, white, 30, 0.5, 0, 0);  */
+   
 
 }
 
@@ -45,10 +45,10 @@
     -fx-background-repeat: no-repeat;   
     -fx-background-size: 130 50;
     -fx-background-position: right top;
-/*
- 	-fx-background-radius: 20 20 20 20;   /* redondeo de puntas  */
 
-/*     -fx-effect: dropshadow(three-pass-box, red, 30, 0.5, 0, 0);    /*  supuesta sombra... no la he visto!!! */ 
+ /*	-fx-background-radius: 20 20 20 20;   redondeo de puntas  */
+
+/*     -fx-effect: dropshadow(three-pass-box, red, 30, 0.5, 0, 0);      supuesta sombra... no la he visto!!! */ 
    
 }
 
@@ -57,6 +57,11 @@
     -fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 74% , center 50% 50% , radius 55% , #600084, #1d1d1d);   
 }
 
+.label-azul {
+	-fx-text-fill: #4682B4;
+	-fx-font-family: "Tahoma";
+	-fx-font-size: 26px;
+}
 
 . {
     -fx-font-size: 13pt;
@@ -64,13 +69,6 @@
     -fx-text-fill: white;
     -fx-opacity: 0.6;
 }
-
-.labelazul{
-	-fx-text-fill: #4682B4;
-	-fx-font-family: "Tahoma";
-	-fx-font-size: 16px;
-}
-
 
 .label {
     -fx-font-size: 13pt;
@@ -94,7 +92,7 @@
 }
 
 .label-h1 {
-    -fx-font-size: 28pt;
+    -fx-font-size: 24pt;
     -fx-font-family: "Segoe UI" , Semibold;
     -fx-text-fill: white;
     -fx-opacity: 1;

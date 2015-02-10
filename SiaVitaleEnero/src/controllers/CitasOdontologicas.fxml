@@ -10,6 +10,9 @@
 
 <AnchorPane prefHeight="550.0" onMouseEntered="#actionMouseEnter" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CitasOdontologicasController">
 	<children>
+		<Label fx:id="lMsjRegistroExito" layoutX="170.0" layoutY="50.0" styleClass="label-h1" text="CITA(S) INGRESADA(S) EXITOSAMENTE" visible="false"/>
+		<Label fx:id="lMsjEliminacionExito" layoutX="170.0" layoutY="50.0" styleClass="label-h1" text="CITA(S) ELIMINADA(S) EXITOSAMENTE" visible="false"/>
+		<Label fx:id="lMsjSeleccioneFecha" layoutX="170.0" layoutY="50.0" styleClass="label-h1" text="SELECCIONE FECHA A CONSULTAR" visible="false"/>
 		<Label fx:id="lDoctor" layoutX="120.0" layoutY="100.0" styleClass="colorletra" text="Doctor" />		
 		<ChoiceBox fx:id="cbDoctor" layoutX="170.0" layoutY="100.0" styleClass="colorletra">
 	      <items>

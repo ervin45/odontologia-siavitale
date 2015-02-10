@@ -18,7 +18,7 @@
                <children>
                   <TableView fx:id="TablaDescriGral" layoutX="14.0" layoutY="44.0" prefHeight="515.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                     <columns>
-                      <TableColumn fx:id="ColDescriGral" prefWidth="260.0" text="Descripción General" />
+                      <TableColumn fx:id="ColDescriGral" prefWidth="260.0" text="DescripciÃ³n General" />
                     </columns>
                   </TableView>
                   <TextField layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="204.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
@@ -38,8 +38,8 @@
                   <TableView fx:id="TablaMateriales" layoutX="25.0" layoutY="245.0" prefHeight="312.0" prefWidth="675.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="245.0">
                     <columns>
                       <TableColumn fx:id="ColItem" prefWidth="52.0" text="Item" />
-                      <TableColumn fx:id="ColDescripcion" prefWidth="200.0" text="Descripción General" />
-                        <TableColumn fx:id="ColPresentacion" prefWidth="150.0" text="Presentación" />
+                      <TableColumn fx:id="ColDescripcion" prefWidth="200.0" text="DescripciÃ³n General" />
+                        <TableColumn fx:id="ColPresentacion" prefWidth="150.0" text="PresentaciÃ³n" />
                         <TableColumn fx:id="ColMarca" prefWidth="150.0" text="Marca" />
                         <TableColumn fx:id="ColCantidad" minWidth="0.0" prefWidth="110.0" text="Cantidad" />
                     </columns>
@@ -157,15 +157,15 @@
                     </rowConstraints>
                   </GridPane>
                   <Label layoutX="50.0" layoutY="68.0" text="Fecha:" />
-                  <Label layoutX="50.0" layoutY="100.0" text="Área Solicitante:" />
-                  <Label layoutX="50.0" layoutY="172.0" text="Presentación:" />
+                  <Label layoutX="50.0" layoutY="100.0" text="Ã�rea Solicitante:" />
+                  <Label layoutX="50.0" layoutY="172.0" text="PresentaciÃ³n:" />
                   <Label layoutX="50.0" layoutY="209.0" text="Marca:" />
                   <Label layoutX="372.0" layoutY="212.0" text="Cantidad:" />
                   <ComboBox fx:id="cbPresentacion" layoutX="186.0" layoutY="171.0" onAction="#selPresentacion" prefHeight="25.0" prefWidth="234.0" />
                   <ComboBox fx:id="cbMarca" layoutX="111.0" layoutY="208.0" onAction="#selMarca" prefHeight="25.0" prefWidth="253.0" />
                   <TextField fx:id="tfCantidad" layoutX="450.0" layoutY="205.0" prefHeight="31.0" prefWidth="166.0" />
                   <TextField fx:id="tfDescriGral" editable="false" layoutX="186.0" layoutY="133.0" />
-                  <Label layoutX="50.0" layoutY="138.0" text="Descripción:" />
+                  <Label layoutX="50.0" layoutY="138.0" text="DescripciÃ³n:" />
                </children>
             </AnchorPane>
         </items>

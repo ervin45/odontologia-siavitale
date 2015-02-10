@@ -8,9 +8,6 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" snapToPixel="true" styleClass="background" visible="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootLayoutController">
   <!-- TODO Add Nodes -->
-  <stylesheets>
-    <URL value="@DarkTheme.css" />
-  </stylesheets>
   <top>
     <MenuBar>
       <menus>
@@ -71,5 +68,8 @@
       </menus>
     </MenuBar>
   </top>
+   <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
 </BorderPane>
 
