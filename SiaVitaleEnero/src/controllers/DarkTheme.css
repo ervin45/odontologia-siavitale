@@ -57,12 +57,6 @@
     -fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 74% , center 50% 50% , radius 55% , #600084, #1d1d1d);   
 }
 
-.label-azul {
-	-fx-text-fill: #4682B4;
-	-fx-font-family: "Tahoma";
-	-fx-font-size: 26px;
-}
-
 . {
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI", Semibold ;
@@ -93,6 +87,13 @@
 
 .label-h1 {
     -fx-font-size: 24pt;
+    -fx-font-family: "Segoe UI" , Semibold;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-h2 {
+    -fx-font-size: 20pt;
     -fx-font-family: "Segoe UI" , Semibold;
     -fx-text-fill: white;
     -fx-opacity: 1;
