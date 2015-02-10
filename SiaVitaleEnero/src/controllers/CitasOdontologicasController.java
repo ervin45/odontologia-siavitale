@@ -82,6 +82,9 @@ public class CitasOdontologicasController{
 	private Button bGuardarCitaBD;
 	
 	@FXML
+	private Button bCancelar;
+	
+	@FXML
 	private Label lMsjRegistroExito;
 	
 	@FXML
@@ -770,6 +773,11 @@ public class CitasOdontologicasController{
 			}
 		}
 				
+	}
+	
+	@FXML
+	private void actionCancelar(){
+		
 	}
 	
 	private void guardarNuevaCitaBD(CitaOdontologica cita){		

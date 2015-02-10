@@ -39,17 +39,14 @@ public class EliminarCitaOdontologicaController{
 	
 	@FXML
 	private void actionCancelar(){
-		System.out.println("boton cancelar eliminar cita");	
-		ContextoCronograma.getInstance().setBanderaEliminarCita(false);
-		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
-		Stage stage = (Stage) bEliminarCita.getScene().getWindow();
-		stage.close();
-		
+		System.out.println("boton cancelar cronograma cita");	
+		Stage stage = (Stage) bCancelar.getScene().getWindow();
+		stage.close();		
 	}
 	
 	private Session openSesion(){		
 		Session sesion = Principal.fabrica.getCurrentSession();
-		sesion.beginTransaction();		
+		sesion.beginTransaction();	 	
 		return sesion;
 	}
 	

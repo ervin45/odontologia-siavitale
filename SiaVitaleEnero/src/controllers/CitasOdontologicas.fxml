@@ -8,22 +8,22 @@
 <?import javafx.scene.image.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane prefHeight="550.0" onMouseEntered="#actionMouseEnter" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CitasOdontologicasController">
+<AnchorPane onMouseEntered="#actionMouseEnter" prefHeight="550.0" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CitasOdontologicasController">
 	<children>
-		<Label fx:id="lMsjRegistroExito" layoutX="170.0" layoutY="50.0" styleClass="label-h1" text="CITA(S) INGRESADA(S) EXITOSAMENTE" visible="false"/>
-		<Label fx:id="lMsjEliminacionExito" layoutX="170.0" layoutY="50.0" styleClass="label-h1" text="CITA(S) ELIMINADA(S) EXITOSAMENTE" visible="false"/>
-		<Label fx:id="lMsjSeleccioneFecha" layoutX="170.0" layoutY="50.0" styleClass="label-h1" text="SELECCIONE FECHA A CONSULTAR" visible="false"/>
-		<Label fx:id="lDoctor" layoutX="120.0" layoutY="100.0" styleClass="colorletra" text="Doctor" />		
-		<ChoiceBox fx:id="cbDoctor" layoutX="170.0" layoutY="100.0" styleClass="colorletra">
+		<Label fx:id="lMsjRegistroExito" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="CITA(S) INGRESADA(S) EXITOSAMENTE" visible="false" />
+		<Label fx:id="lMsjEliminacionExito" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="CITA(S) ELIMINADA(S) EXITOSAMENTE" visible="false" />
+		<Label fx:id="lMsjSeleccioneFecha" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="SELECCIONE FECHA A CONSULTAR" visible="false" />
+		<Label fx:id="lDoctor" layoutX="120.0" layoutY="70.0" styleClass="label-h2" text="Doctor" />		
+		<ChoiceBox fx:id="cbDoctor" layoutX="190.0" layoutY="70.0" styleClass="label-h2">
 	      <items>
-	        <FXCollections fx:factory="observableArrayList">
+	        <FXCollections fx:factory="observableArrayList" >
 	          <String fx:value="" />
 	          <String fx:value="" />
 	        </FXCollections>
 	      </items>
 		</ChoiceBox>
-		<Label fx:id="lFecha" layoutX="330.0" layoutY="100.0" styleClass="colorletra" text="Fecha" />
-		<GridPane fx:id="gpdvFecha" layoutX="380.0" layoutY="100.0">
+		<Label fx:id="lFecha" layoutX="400.0" layoutY="70.0" styleClass="label-h2" text="Fecha" />
+		<GridPane fx:id="gpdvFecha" layoutX="460.0" layoutY="70.0">
 	        <columnConstraints>
 	          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 	        </columnConstraints>
@@ -31,63 +31,72 @@
 	          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 	        </rowConstraints>
       	</GridPane>		
-		<TableView fx:id="tvHorario" layoutX="65.0" layoutY="170.0" prefHeight="300.0" prefWidth="85.0">
+		<TableView fx:id="tvHorario" layoutX="100.0" layoutY="140.0" prefHeight="300.0" prefWidth="85.0">
           <columns>
           	<TableColumn fx:id="tcHora" prefWidth="85.0" text="Hora\Dia" />
           </columns>
         </TableView>
-		<TableView fx:id="tvLunes" layoutX="150.0" layoutY="170.0" prefHeight="300.0" prefWidth="140">
+		<TableView fx:id="tvLunes" layoutX="185.0" layoutY="140.0" prefHeight="300.0" prefWidth="140">
           <columns>
             <TableColumn fx:id="tcLunes" prefWidth="140" text="Lunes" />
           </columns>          
         </TableView>
-        <TableView fx:id="tvMartes" layoutX="250.0" layoutY="170.0" prefHeight="300.0" prefWidth="140">
+        <TableView fx:id="tvMartes" layoutX="285.0" layoutY="140.0" prefHeight="300.0" prefWidth="140">
           <columns>
            	<TableColumn fx:id="tcMartes" prefWidth="140" text="Martes" />
           </columns>          
         </TableView>   
-        <TableView fx:id="tvMiercoles" layoutX="350.0" layoutY="170.0" prefHeight="300.0" prefWidth="140">
+        <TableView fx:id="tvMiercoles" layoutX="385.0" layoutY="140.0" prefHeight="300.0" prefWidth="140">
           <columns>
            	<TableColumn fx:id="tcMiercoles" prefWidth="140" text="Miercoles" />
           </columns>          
         </TableView>   
-        <TableView fx:id="tvJueves" layoutX="450.0" layoutY="170.0" prefHeight="300.0" prefWidth="140">
+        <TableView fx:id="tvJueves" layoutX="485.0" layoutY="140.0" prefHeight="300.0" prefWidth="140">
           <columns>
            	<TableColumn fx:id="tcJueves" prefWidth="140" text="Jueves" />
           </columns>          
         </TableView>   
-        <TableView fx:id="tvViernes" layoutX="550.0" layoutY="170.0" prefHeight="300.0" prefWidth="140">
+        <TableView fx:id="tvViernes" layoutX="585.0" layoutY="140.0" prefHeight="300.0" prefWidth="140">
           <columns>
            	<TableColumn fx:id="tcViernes" prefWidth="140" text="Viernes" />
           </columns>          
         </TableView>        
-        <Button fx:id="btAM" layoutX="25.0" layoutY="230.0" mnemonicParsing="false" onAction="#actionTurnoAM" text="">
+        <Button fx:id="btAM" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" onAction="#actionTurnoAM" text="">
             <graphic>
-                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@../Black/icon-plus-sign.png" />
                   </image>
                 </ImageView>
             </graphic>
     	</Button>
-    	<Button fx:id="btPM" layoutX="25.0" layoutY="270.0" mnemonicParsing="false" onAction="#actionTurnoPM" text="">
+    	<Button fx:id="btPM" layoutX="20.0" layoutY="320.0" mnemonicParsing="false" onAction="#actionTurnoPM" prefHeight="42.0" prefWidth="48.0" text="">
             <graphic>
-                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@../Black/icon-minus-sign.png" />
                   </image>
                 </ImageView>
             </graphic>
     	</Button>    	
-    	<Button fx:id="bGuardarCitaBD" disable="true" layoutX="120.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionGuardarCita" text="">
+    	<Button fx:id="bGuardarCitaBD" disable="true" layoutX="110.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionGuardarCita" text="">
             <graphic>
-                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="33.0" fitWidth="37.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@../Black/icon-plus-sign.png" />
+                    <Image url="@../Black/icon-ok-sign.png" />
                   </image>
                 </ImageView>
             </graphic>
     	</Button>
+    	<Button fx:id="bCancelar" layoutX="660.0" layoutY="480.0" mnemonicParsing="false" onAction="#actionCancelar" prefHeight="42.0" prefWidth="48.0" text="">
+	     <graphic>
+	        <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+	          <image>
+	            <Image url="@../Black/icon-pageback.png" />
+	          </image>
+	        </ImageView>
+	      </graphic>
+	    </Button>
 	</children>
 	<stylesheets>
 		<URL value="@DarkTheme.css" />
