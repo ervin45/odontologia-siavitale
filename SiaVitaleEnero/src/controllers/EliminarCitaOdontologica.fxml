@@ -8,7 +8,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane prefHeight="160.0" prefWidth="450.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EliminarCitaOdontologicaController">
+<AnchorPane prefHeight="160.0" prefWidth="450.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EliminarCitaOdontologicaController">
 	<children>
 		<Label fx:id="texto" layoutX="60.0" layoutY="50.0" styleClass="label-h2" text="¿Desea eliminar la cita seleccionada?" />				
 		<Button fx:id="bEliminarCita" layoutX="50.0" layoutY="110.0" mnemonicParsing="false" onAction="#actionEliminarCita" text="">

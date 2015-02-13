@@ -31,8 +31,8 @@ public class EliminarCitaOdontologicaController{
 	@FXML
 	private void actionEliminarCita(){
 		System.out.println("boton eliminar cita");	
-		ContextoCronograma.getInstance().setBanderaEliminarCita(true);
 		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
+		ContextoCronograma.getInstance().setBanderaEliminarCita(true);
 		Stage stage = (Stage) bEliminarCita.getScene().getWindow();
 		stage.close();
 	}
@@ -40,6 +40,7 @@ public class EliminarCitaOdontologicaController{
 	@FXML
 	private void actionCancelar(){
 		System.out.println("boton cancelar cronograma cita");	
+		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
 		Stage stage = (Stage) bCancelar.getScene().getWindow();
 		stage.close();		
 	}
