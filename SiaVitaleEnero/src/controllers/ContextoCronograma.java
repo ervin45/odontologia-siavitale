@@ -13,6 +13,8 @@ public class ContextoCronograma {
 	private boolean banderaVentEliminarCita;
 	private String observacionCita;
 	private boolean banderaEliminarCita;
+	private boolean banderaInicio_cbDr;
+	private boolean banderaLimpiezaTabla;
 	
 	public static ContextoCronograma getInstance() {
         return instance;        
@@ -72,6 +74,22 @@ public class ContextoCronograma {
 
 	public void setBanderaVentEliminarCita(boolean banderaVentEliminarCita) {
 		this.banderaVentEliminarCita = banderaVentEliminarCita;
-	}	
+	}
+
+	public boolean getBanderaInicio_cbDr() {
+		return banderaInicio_cbDr;
+	}
+
+	public void setBanderaInicio_cbDr(boolean banderaInicio_cbDr) {
+		this.banderaInicio_cbDr = banderaInicio_cbDr;
+	}
+	public boolean getBanderaLimpiezaTabla() {
+		return banderaLimpiezaTabla;
+	}
+
+	public void setBanderaLimpiezaTabla(boolean banderaLimpiezaTabla) {
+		this.banderaLimpiezaTabla = banderaLimpiezaTabla;
+	}
+	
 	
 }

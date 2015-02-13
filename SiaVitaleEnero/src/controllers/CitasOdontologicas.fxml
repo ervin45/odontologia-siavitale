@@ -12,7 +12,9 @@
 	<children>
 		<Label fx:id="lMsjRegistroExito" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="CITA(S) INGRESADA(S) EXITOSAMENTE" visible="false" />
 		<Label fx:id="lMsjEliminacionExito" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="CITA(S) ELIMINADA(S) EXITOSAMENTE" visible="false" />
-		<Label fx:id="lMsjSeleccioneFecha" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="SELECCIONE FECHA A CONSULTAR" visible="false" />
+		<Label fx:id="lMsjSeleccioneFecha" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="SELECCIONE FECHA" visible="false" />
+		<Label fx:id="lMsjSeleccioneDoctor" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="SELECCIONE DOCTOR" visible="false" />
+		<Label fx:id="lMsjSeleccioneTurno" layoutX="200.0" layoutY="20.0" styleClass="label-h1" text="SELECCIONE TURNO" visible="false" />
 		<Label fx:id="lDoctor" layoutX="120.0" layoutY="70.0" styleClass="label-h2" text="Doctor" />		
 		<ChoiceBox fx:id="cbDoctor" layoutX="190.0" layoutY="70.0" styleClass="label-h2">
 	      <items>
@@ -61,7 +63,7 @@
            	<TableColumn fx:id="tcViernes" prefWidth="140" text="Viernes" />
           </columns>          
         </TableView>        
-        <Button fx:id="btAM" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" onAction="#actionTurnoAM" text="">
+        <Button fx:id="btAM" disable="true" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" onAction="#actionTurnoAM" text="">
             <graphic>
                 <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -70,7 +72,7 @@
                 </ImageView>
             </graphic>
     	</Button>
-    	<Button fx:id="btPM" layoutX="20.0" layoutY="320.0" mnemonicParsing="false" onAction="#actionTurnoPM" prefHeight="42.0" prefWidth="48.0" text="">
+    	<Button fx:id="btPM" disable="true" layoutX="20.0" layoutY="320.0" mnemonicParsing="false" onAction="#actionTurnoPM" prefHeight="42.0" prefWidth="48.0" text="">
             <graphic>
                 <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                   <image>
