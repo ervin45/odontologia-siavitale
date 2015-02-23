@@ -58,6 +58,7 @@
         	<items>
             	<MenuItem mnemonicParsing="false" onAction="#botonHorariosTurnos" text="Horario/Turnos" />
             	<MenuItem mnemonicParsing="false" onAction="#botonCitas" text="Citas" />
+            	<MenuItem mnemonicParsing="false" onAction="#botonFacturarCita" text="Facturar cita" />
             </items>
         </Menu>
         <Menu disable="true" mnemonicParsing="false" text="Ayuda">

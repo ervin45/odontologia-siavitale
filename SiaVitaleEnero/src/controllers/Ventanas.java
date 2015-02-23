@@ -76,4 +76,23 @@ public class Ventanas extends Application{
     		 //tratar la excepción
     	}
 	}
+	
+	public void mostrarVentanaFacturarCita(){
+		System.out.println("mostrar ventana facturar cita");
+    	
+    	try{
+    		FXMLLoader loader = new FXMLLoader(Ventanas.class.getResource("FacturarCitaOdontologica.fxml"));
+    		AnchorPane ventanaR = (AnchorPane) loader.load();
+    		Stage ventana = new Stage();
+    		ventana.initOwner(stagePrincipal);
+    		ventana.initModality(Modality.WINDOW_MODAL);
+    		Scene scene = new Scene(ventanaR);
+            ventana.setScene(scene);
+            FacturarCitaOdontologicaController controller = loader.getController();
+            controller.setProgramaPrincipal(this);
+            ventana.show(); 
+    	}catch(Exception e){
+    		 //tratar la excepción
+    	}
+	}
 }

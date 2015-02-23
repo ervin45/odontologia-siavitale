@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FacturarCitaOdontologicaController">
+	<children>
+		<Label fx:id="lFecha" layoutX="380.0" layoutY="10.0" styleClass="label-h2" text="" />
+		
+		<SplitPane dividerPositions="0.3" focusTraversable="true" layoutX="10.0" layoutY="70" prefHeight="600.0" prefWidth="980.0">
+			<items>
+				<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" opacity="1.0" prefHeight="700.0" prefWidth="200.0" styleClass="background0">
+					<children>
+						<Label fx:id="lCedulaPaciente" layoutX="10.0" layoutY="10.0" styleClass="label-h2" text="Cedula del Paciente" />
+						<TextField fx:id="tfCedulaPaciente" layoutX="10.0" layoutY="40.0" styleClass="label-h2" />
+						<TableView fx:id="tvCitas" layoutX="10.0" layoutY="70.0" prefHeight="400.0" prefWidth="220.0">
+				          <columns>
+				          	<TableColumn fx:id="tcDescripcion" prefWidth="200.0" text="Descripcion" />
+				          </columns>
+				        </TableView>
+				        <Button fx:id="bMostrarCitas" disable="true" layoutX="180.0" layoutY="35.0" mnemonicParsing="false" onAction="#actionMostrarCita" text="">
+				            <graphic>
+				                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+				                  <image>
+				                    <Image url="@../Black/icon-plus-sign.png" />
+				                  </image>
+				                </ImageView>
+				            </graphic>
+				    	</Button>
+					</children>
+				</AnchorPane>
+				<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="550.0" styleClass="background0">
+					<children>
+						<Label fx:id="lRIFCedula" layoutX="20.0" layoutY="30.0" styleClass="label-h2" text="RIF" />
+						<Label fx:id="lNombre" layoutX="250.0" layoutY="30.0" styleClass="label-h2" text="Razon Social" />
+						<TextField fx:id="tfRIFCedula" layoutX="65.0" layoutY="32.0" styleClass="label-h2" text="" />
+						<Label fx:id="lRazonSocial" layoutX="360.0" layoutY="32.0" styleClass="label-h2" text="" />
+						<Label fx:id="lmsj2" layoutX="45.0" layoutY="120.0" styleClass="label-h2" text="Servicio odontologico" />
+						<TableView fx:id="tvCitasSeleccionadas" layoutX="10.0" layoutY="200.0" prefHeight="200.0" prefWidth="180.0">
+				          <columns>
+				          	<TableColumn fx:id="tcDescripcionCS" prefWidth="180.0" text="Citas Seleccionadas" />
+				          </columns>
+				        </TableView>
+				        <ChoiceBox fx:id="cbServicioOdontologico" layoutX="250.0" layoutY="122.0" prefWidth="150.0">
+                  			<items>
+						        <FXCollections fx:factory="observableArrayList">						        	
+						        </FXCollections>
+					     	</items>
+					    </ChoiceBox>
+					    <TableView fx:id="tvItems" layoutX="200.0" layoutY="200.0" prefHeight="200.0" prefWidth="452.0">
+				          <columns>
+				          	<TableColumn fx:id="tcDescripcionItem" prefWidth="350.0" text="Servicio Odontologico" />
+				          	<TableColumn fx:id="tcCostoItem" prefWidth="100.0" text="Costo" />
+				          </columns>
+				        </TableView>
+				        <Label fx:id="lTotal" layoutX="430.0" layoutY="450.0" styleClass="label-h2" text="Total" />
+						<Label fx:id="lValorTotal" layoutX="490.0" layoutY="450.0" styleClass="label-h2" text="" />
+						<Button fx:id="bFacturar" disable="true" layoutX="430.0" layoutY="490.0" mnemonicParsing="false" onAction="#actionFacturar" text="">
+				            <graphic>
+				                <ImageView fitHeight="33.0" fitWidth="37.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+				                  <image>
+				                    <Image url="@../Black/icon-ok.png" />
+				                  </image>
+				                </ImageView>
+				            </graphic>
+				    	</Button>									 
+					</children>
+				</AnchorPane>
+			</items>
+		</SplitPane>	
+	</children>
+	<stylesheets>
+		<URL value="@DarkTheme.css" />
+	</stylesheets>
+</AnchorPane>
