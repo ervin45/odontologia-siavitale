@@ -187,6 +187,7 @@ public class Principal extends Application {
 			config.addAnnotatedClass(Paciente.class);
 			config.addAnnotatedClass(Doctor.class);
 			config.addAnnotatedClass(CitaOdontologica.class);
+			config.addAnnotatedClass(ServicioOdontologico.class);
 //			IGUAL QUE = config.configure();
 
 			Properties propiedades = new Properties();

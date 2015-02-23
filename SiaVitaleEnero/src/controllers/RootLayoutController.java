@@ -382,4 +382,10 @@ public class RootLayoutController {
 		 System.out.println("Ejecuta la ventana de cronograma cita");
 		 ProgramaPrincipal.mostrarVentanaCronogramaCita();	 
 	 }
+	 
+	 @FXML
+	 private void botonFacturarCita(){
+		 System.out.println("Ejecuta la ventana de facturar cita");
+		 ProgramaPrincipal.mostrarVentanaFacturarCita();
+	 }
 }
