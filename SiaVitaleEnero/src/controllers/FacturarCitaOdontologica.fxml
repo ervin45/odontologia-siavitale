@@ -36,11 +36,31 @@
 				</AnchorPane>
 				<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="550.0" styleClass="background0">
 					<children>
-						<Label fx:id="lRIFCedula" layoutX="20.0" layoutY="30.0" styleClass="label-h2" text="RIF" />
-						<Label fx:id="lNombre" layoutX="250.0" layoutY="30.0" styleClass="label-h2" text="Razon Social" />
-						<TextField fx:id="tfRIFCedula" layoutX="65.0" layoutY="32.0" styleClass="label-h2" text="" />
-						<Label fx:id="lRazonSocial" layoutX="360.0" layoutY="32.0" styleClass="label-h2" text="" />
+						<Label fx:id="lRIFCedula" layoutX="20.0" layoutY="30.0" styleClass="label-h2" text="RIF" />						
+						<TextField fx:id="tfRIF" layoutX="65.0" layoutY="32.0" styleClass="label-h2" text="" />
+						<Button fx:id="bBuscarRazonSocial" disable="true" layoutX="230.0" layoutY="30" mnemonicParsing="false" onAction="#actionBuscarRazonSocial" text="">
+				            <graphic>
+				                <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+				                  <image>
+				                    <Image url="@../Black/icon-search.png" />
+				                  </image>
+				                </ImageView>
+				            </graphic>
+				    	</Button>
+				    	<Button fx:id="bRegistrarRazonSocial" disable="true" visible="false" layoutX="230.0" layoutY="30" mnemonicParsing="false" onAction="#actionRegistrarRazonSocial" text="">
+				            <graphic>
+				                <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+				                  <image>
+				                    <Image url="@../Black/icon-ok.png" />
+				                  </image>
+				                </ImageView>
+				            </graphic>
+				    	</Button>
+				    	<Label fx:id="lRazonSocial" visible="false" layoutX="300.0" layoutY="10.0" styleClass="label-h2" text="" />
+						<TextField fx:id="tfRazonSocial" visible="false" layoutX="300.0" layoutY="40.0" styleClass="label-h2" text="" />
+						<Label fx:id="lValorRazonSocial" visible="false" layoutX="300.0" layoutY="32.0" styleClass="label-h2" text="" />
 						<Label fx:id="lmsj2" layoutX="45.0" layoutY="120.0" styleClass="label-h2" text="Servicio odontologico" />
+						<Label fx:id="lMsjExito" layoutX="45.0" layoutY="530.0" styleClass="label-h2" text="Facturando..." visible="false"/>
 						<TableView fx:id="tvCitasSeleccionadas" layoutX="10.0" layoutY="200.0" prefHeight="200.0" prefWidth="180.0">
 				          <columns>
 				          	<TableColumn fx:id="tcDescripcionCS" prefWidth="180.0" text="Citas Seleccionadas" />
