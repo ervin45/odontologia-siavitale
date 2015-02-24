@@ -85,6 +85,29 @@ public class FacturarCitaOdontologicaController{
 	@FXML
 	private Label lValorTotal;
 	
+	@FXML
+	private TextField tfRIF;
+	
+	@FXML
+	private Label lRazonSocial;
+	
+	@FXML
+	private TextField tfRazonSocial;
+	
+	private Personal persona;
+	
+	@FXML
+	private Label lMsjExito;
+	
+	@FXML
+	private Button bBuscarRazonSocial;
+	
+	@FXML
+	private Label lValorRazonSocial;
+	
+	@FXML
+	private Button bRegistrarRazonSocial;
+	
 	public FacturarCitaOdontologicaController(){	}
 		
 	@FXML
@@ -96,7 +119,7 @@ public class FacturarCitaOdontologicaController{
 		tfCedulaPaciente.textProperty().addListener(new ChangeListener<String>(){
 			 @Override
 			    public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
-				 System.out.println("tf cp: "+tfCedulaPaciente.getText());	
+				 
 				 if (tfCedulaPaciente.getText().equals("")){
 					 tvCitas.getSelectionModel().clearSelection();
 					 bMostrarCitas.setDisable(true);
@@ -176,6 +199,28 @@ public class FacturarCitaOdontologicaController{
 				System.out.println("servicio odontologico: "+arg2.intValue());	
 				posicionarItemSeleccionado(arg2.intValue());
 		}});			
+		
+		tfRIF.textProperty().addListener(new ChangeListener<String>(){
+			 @Override
+			    public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+				 
+				 lRazonSocial.setVisible(false);				 tfRazonSocial.setVisible(false);
+				 lValorRazonSocial.setVisible(false);
+				 bBuscarRazonSocial.setVisible(true); bBuscarRazonSocial.setDisable(false);
+				 bRegistrarRazonSocial.setVisible(false); bRegistrarRazonSocial.setDisable(true);				 
+			 }
+		});		
+		
+		tfRazonSocial.textProperty().addListener(new ChangeListener<String>(){
+			 @Override
+			    public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+					 				 
+					 if (tfRazonSocial.getText().equals(""))
+						 bRegistrarRazonSocial.setDisable(true);
+					 else
+						 bRegistrarRazonSocial.setDisable(false);
+				}
+		});	
 	}
 	
 	private void posicionarItemSeleccionado(int pos){
@@ -270,7 +315,7 @@ public class FacturarCitaOdontologicaController{
 		if ((servicioOdontologicoListItems.size()!=0) && (citaOdontologicaSeleccionadaList.size()!=0))
 			bFacturar.setDisable(false);
 		else
-			bFacturar.setDisable(true);
+			bFacturar.setDisable(true);	
 	}
 	
 	@FXML
@@ -278,12 +323,12 @@ public class FacturarCitaOdontologicaController{
 		System.out.println("Boton buscar citas de esa cédula "+tfCedulaPaciente.getText());
 		
 		Session sesion2 = openSesion();
-		Personal persona;
+		
 		Query query2 = sesion2.createQuery("from Personal where Cedula =:ced");
 		query2.setString("ced", tfCedulaPaciente.getText());
 		query2.setMaxResults(1);
 		persona = (Personal) query2.uniqueResult();
-		System.out.println("el nombre del posible a facturar: "+persona.getApellidos() +" "+persona.getNombres());
+		
 		if (persona!=null){
 			Query query3 = sesion2.createQuery("from Paciente where idPersona =:id");
 			query3.setInteger("id", persona.getId());
@@ -308,8 +353,59 @@ public class FacturarCitaOdontologicaController{
 	}
 	
 	@FXML
+	private void actionBuscarRazonSocial(){
+		System.out.println("buscar razon social");
+		
+		Session sesion2 = openSesion();
+		
+		Query query2 = sesion2.createQuery("from Personal where Cedula =:ced");
+		query2.setString("ced", tfRIF.getText());
+		query2.setMaxResults(1);
+		persona = (Personal) query2.uniqueResult();
+				
+		if (persona!=null){	
+			lValorRazonSocial.setText(persona.getApellidos()+" "+persona.getNombres());
+			lValorRazonSocial.setVisible(true);		tfRazonSocial.setVisible(false);
+		}else{
+			lRazonSocial.setVisible(true);	lRazonSocial.setText("No se encuentra registrado");
+			lValorRazonSocial.setVisible(false);	tfRazonSocial.setVisible(true); tfRazonSocial.setText("");
+			bRegistrarRazonSocial.setVisible(true);	bRegistrarRazonSocial.setDisable(true);
+			bBuscarRazonSocial.setVisible(false); bBuscarRazonSocial.setDisable(true);
+		}
+			
+		closeSesion(sesion2);	
+	}
+	
+	@FXML
+	private void actionRegistrarRazonSocial(){
+		lRazonSocial.setText("Registrado exitosamente");
+		lValorRazonSocial.setVisible(true); lValorRazonSocial.setText(tfRazonSocial.getText());
+		bRegistrarRazonSocial.setVisible(false); 
+		bRegistrarRazonSocial.setDisable(true);
+		bBuscarRazonSocial.setVisible(true); bBuscarRazonSocial.setDisable(false);
+		System.out.println("voy a registrar la razon social nueva "+tfRazonSocial.getText() + " __ "+tfRIF.getText());
+		
+		Personal pers = new Personal();
+		pers.setNombres(tfRazonSocial.getText());
+		pers.setCedula(tfRIF.getText());
+		
+		Session ses = openSesion();
+		ses.save(pers);
+		closeSesion(ses);
+		tfRazonSocial.setText(""); tfRIF.setText("");
+	}
+	
+	@FXML
 	private void actionFacturar(){
 		System.out.println("facturar boton");
+		
+		if (!tfRIF.getText().equals("")){
+			System.out.println("a nombre de la razón social "+lValorRazonSocial.getText());
+		}else
+			System.out.println("a nombre del paciente "+persona.getApellidos() +", "+persona.getNombres());
+		
+		lMsjExito.setVisible(true);
+		
 	}
 	
 	private Session openSesion(){		
