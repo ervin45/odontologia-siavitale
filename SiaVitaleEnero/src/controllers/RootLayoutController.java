@@ -388,4 +388,10 @@ public class RootLayoutController {
 		 System.out.println("Ejecuta la ventana de facturar cita");
 		 ProgramaPrincipal.mostrarVentanaFacturarCita();
 	 }
+	 
+	 @FXML
+	 private void botonServicioOdontologico(){
+		 System.out.println("Ejecuta la ventana de nuevo servicio odontologico");
+		 ProgramaPrincipal.mostrarVentanaNuevoServicioOdontologico();
+	 }
 }

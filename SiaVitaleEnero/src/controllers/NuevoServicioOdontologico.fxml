@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="400.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevoServicioOdontologicoController">
+	<children>
+		
+	</children>	
+	<stylesheets>
+		<URL value="@DarkTheme.css" />
+	</stylesheets>
+</AnchorPane>

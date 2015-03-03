@@ -95,4 +95,23 @@ public class Ventanas extends Application{
     		 //tratar la excepción
     	}
 	}
+	
+	public void mostrarVentanaNuevoServicioOdontologico(){
+		System.out.println("mostrar ventana nuevo servicio odontologico");
+		
+		try{
+			FXMLLoader loader = new FXMLLoader(Ventanas.class.getResource("NuevoServicioOdontologico.fxml"));
+    		AnchorPane ventanaR = (AnchorPane) loader.load();
+    		Stage ventana = new Stage();
+    		ventana.initOwner(stagePrincipal);
+    		ventana.initModality(Modality.WINDOW_MODAL);
+    		Scene scene = new Scene(ventanaR);
+            ventana.setScene(scene);
+            NuevoServicioOdontologicoController controller = loader.getController();
+            controller.setProgramaPrincipal(this);
+            ventana.show();
+		}catch(Exception e){
+			
+		}
+	}
 }
