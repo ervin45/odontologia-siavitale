@@ -565,9 +565,9 @@ public class CitasOdontologicasController{
 		
 		if (dpFecha.getSelectedDate()!=null && cbDoctor.getSelectionModel().getSelectedIndex()!=-1){
 			
-			if (ContextoCronograma.getInstance().getBanderaLimpiezaTabla())
-				lMsjSeleccioneTurno.setVisible(true);
-			else
+//			if (ContextoCronograma.getInstance().getBanderaLimpiezaTabla())
+//				lMsjSeleccioneTurno.setVisible(false);
+//			else
 				lMsjSeleccioneTurno.setVisible(false);
 			
 			lMsjSeleccioneDoctor.setVisible(false);
@@ -591,44 +591,44 @@ public class CitasOdontologicasController{
 		tvMiercoles.getSelectionModel().clearSelection();		tvJueves.getSelectionModel().clearSelection();
 		tvViernes.getSelectionModel().clearSelection();
 		
-		System.out.println(" *.*.*.*.* PROCESO NORMAL *.*.*.*.*");
-		System.out.format("%n lunes: ");
-		Iterator<CitaOdontologica> iLunes = citaListLunes.iterator();
-		while (iLunes.hasNext())	System.out.print(" - "+iLunes.next().getObservacion());
-	
-		System.out.format("%n martes: ");
-		Iterator<CitaOdontologica> iMartes = citaListMartes.iterator();
-		while (iMartes.hasNext())	System.out.print(" - "+iMartes.next().getObservacion());
-		
-		System.out.format("%n miercoles: ");
-		Iterator<CitaOdontologica> iMiercoles = citaListMiercoles.iterator();
-		while (iMiercoles.hasNext())	System.out.print(" - "+iMiercoles.next().getObservacion());
-		
-		System.out.format("%n jueves: ");
-		Iterator<CitaOdontologica> iJueves = citaListJueves.iterator();
-		while (iJueves.hasNext())	System.out.print(" - "+iJueves.next().getObservacion());
-		
-		System.out.format("%n viernes: ");
-		Iterator<CitaOdontologica> iViernes = citaListViernes.iterator();
-		while (iViernes.hasNext())	System.out.print(" - "+iViernes.next().getObservacion());
+//		System.out.println(" *.*.*.*.* PROCESO NORMAL *.*.*.*.*");
+//		System.out.format("%n lunes: ");
+//		Iterator<CitaOdontologica> iLunes = citaListLunes.iterator();
+//		while (iLunes.hasNext())	System.out.print(" - "+iLunes.next().getObservacion());
+//	
+//		System.out.format("%n martes: ");
+//		Iterator<CitaOdontologica> iMartes = citaListMartes.iterator();
+//		while (iMartes.hasNext())	System.out.print(" - "+iMartes.next().getObservacion());
+//		
+//		System.out.format("%n miercoles: ");
+//		Iterator<CitaOdontologica> iMiercoles = citaListMiercoles.iterator();
+//		while (iMiercoles.hasNext())	System.out.print(" - "+iMiercoles.next().getObservacion());
+//		
+//		System.out.format("%n jueves: ");
+//		Iterator<CitaOdontologica> iJueves = citaListJueves.iterator();
+//		while (iJueves.hasNext())	System.out.print(" - "+iJueves.next().getObservacion());
+//		
+//		System.out.format("%n viernes: ");
+//		Iterator<CitaOdontologica> iViernes = citaListViernes.iterator();
+//		while (iViernes.hasNext())	System.out.print(" - "+iViernes.next().getObservacion());
 			
-		System.out.format("%n/-------/");
-		System.out.format("%n lunes: ");
-		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDLunes.get(y));
-		
-		System.out.format("%n martes");
-		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDMartes.get(y));
-		
-		System.out.format("%n miercoles");
-		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDMiercoles.get(y));
-		
-		System.out.format("%n jueves");
-		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDJueves.get(y));
-		
-		System.out.format("%n viernes");
-		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDViernes.get(y));
-		
-		System.out.format("%n/-------/");		
+//		System.out.format("%n/-------/");
+//		System.out.format("%n lunes: ");
+//		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDLunes.get(y));
+//		
+//		System.out.format("%n martes");
+//		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDMartes.get(y));
+//		
+//		System.out.format("%n miercoles");
+//		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDMiercoles.get(y));
+//		
+//		System.out.format("%n jueves");
+//		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDJueves.get(y));
+//		
+//		System.out.format("%n viernes");
+//		for (int y=0;y<9;y++)	System.out.print(" - "+posCitasVienenBDViernes.get(y));
+//		
+//		System.out.format("%n/-------/");		
 		
 		if (ContextoCronograma.getInstance().getPaciente()!=null && !ContextoCronograma.getInstance().getBanderaVentana()){
 			ContextoCronograma.getInstance().setBanderaVentana(true);			
@@ -885,7 +885,8 @@ public class CitasOdontologicasController{
 	}
 	
 	private void guardarNuevaCitaBD(CitaOdontologica cita){		
-		Session sesion = openSesion();			
+		Session sesion = openSesion();	
+		cita.setAsistencia("libre");
 		sesion.saveOrUpdate(cita);		
 		closeSesion(sesion);
 		lMsjRegistroExito.setVisible(true);

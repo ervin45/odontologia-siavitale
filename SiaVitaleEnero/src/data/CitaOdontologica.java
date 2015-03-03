@@ -21,6 +21,7 @@ public class CitaOdontologica {
 	private String AMPM;
 	private String observacion;
 	private String asistencia;
+	private Factura factura;
 
 	@javax.persistence.Id
 	@GeneratedValue
@@ -76,6 +77,15 @@ public class CitaOdontologica {
 	public void setAsistencia(String asistencia) {
 		this.asistencia = asistencia;
 	}	
+	
+	@ManyToOne
+	@JoinColumn(name="idFactura")
+	public Factura getFactura() {
+		return factura;
+	}
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
 	
 	@Override
 	public String toString(){

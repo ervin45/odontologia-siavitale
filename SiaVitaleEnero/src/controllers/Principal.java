@@ -137,6 +137,10 @@ public class Principal extends Application {
 		try{
 			System.out.println("init!!!");
 			config = new Configuration();
+			
+			config.addAnnotatedClass(RazonSocial.class);
+			config.addAnnotatedClass(Factura.class);
+			config.addAnnotatedClass(itemsFactura.class);
 			config.addAnnotatedClass(Horario.class);
 			config.addAnnotatedClass(Turno.class);
 			config.addAnnotatedClass(Cargo.class);
@@ -188,6 +192,7 @@ public class Principal extends Application {
 			config.addAnnotatedClass(Doctor.class);
 			config.addAnnotatedClass(CitaOdontologica.class);
 			config.addAnnotatedClass(ServicioOdontologico.class);
+			config.addAnnotatedClass(PrecioServicioOdontologico.class);
 //			IGUAL QUE = config.configure();
 
 			Properties propiedades = new Properties();
@@ -238,7 +243,6 @@ public class Principal extends Application {
 			propiedades.setProperty("hibernate.connection.zeroDateTimeBehavior","convertToNull");   // nuevo 2013 -04-20 
 
 			config.addProperties(propiedades);
-// 			FIN DE IGUAL QUE!!!
 
 //			fabrica = config.buildSessionFactory();
 
