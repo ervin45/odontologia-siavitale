@@ -96,24 +96,3 @@ public class NuevaCitaOdontologicaController{
 		 this.ProgramaPrincipal = ProgramaPrincipal;
 	 }
 }
-
-//tfObservacion.focusedProperty().addListener(new ChangeListener<Boolean>(){
-//@Override
-//public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue){
-//	if (cbPaciente.getSelectionModel().getSelectedIndex()!=-1){
-//		btAgregarCita.setDisable(false);
-//		System.out.println("listo");
-//	}else
-//		System.out.println("no hay pacient selec");
-//}
-//});		
-
-//cbPaciente.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){			
-//@Override
-//public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {						
-//	if (!opcionPaciente.isEmpty()){
-//		System.out.println("Pacientbt: "+arg2.intValue());
-//	}
-//	if (!tfObservacion.getText().equals("")){
-//		btAgregarCita.setDisable(false);
-//	}

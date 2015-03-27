@@ -8,9 +8,103 @@
 <?import javafx.scene.image.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevoServicioOdontologicoController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevoServicioOdontologicoController">
 	<children>
-		
+		<Label fx:id="lMsj" layoutX="200.0" layoutY="180.0" styleClass="label-h2" text="" visible="false" />
+		<Label fx:id="lMsjGuia" layoutX="40.0" layoutY="10.0" styleClass="label-h2" text="Seleccione una de las opciones disponibles" visible="true" />
+		<Label fx:id="lMsjServOdontologico" layoutX="35.0" layoutY="65.0" styleClass="label-h2" text="Servicio Odontologico" visible="false" />
+		<ChoiceBox fx:id="cbServicioOdontologico" layoutX="250.0" layoutY="65.0" styleClass="label-h2" visible="false">
+	      <items>
+	        <FXCollections fx:factory="observableArrayList">
+	          <String fx:value="" />
+	          <String fx:value="" />
+	        </FXCollections>
+	      </items>
+		</ChoiceBox>	
+		<Label fx:id="lIdSO" layoutX="20.0" layoutY="20.0" text="" visible="false" />	
+		<Label fx:id="lband" layoutX="28.0" layoutY="20.0" text="nuevo" visible="false" />
+		<Label fx:id="lServicioOdontologico" layoutX="160.0" layoutY="110.0" styleClass="label-h2" text="Nombre" visible="false" />
+		<TextField fx:id="tfSO" disable="true" layoutX="250.0" layoutY="110.0" prefWidth="150.0" styleClass="label-h2" visible="false" />
+		<Label fx:id="lPrecio" layoutX="180.0" layoutY="150.0" styleClass="label-h2" text="Precio" visible="false" />
+		<TextField fx:id="tfPrecio" alignment="CENTER_RIGHT" disable="true" layoutX="250.0" layoutY="150.0" prefWidth="80.0" styleClass="label-h2" visible="false" />		
+		<TableView fx:id="tvPrecios" layoutX="80.0" layoutY="210.0" prefHeight="300.0" prefWidth="300.0" visible="false">
+          <columns>
+          	<TableColumn fx:id="tcPrecio" prefWidth="150.0" text="Precio" />
+          	<TableColumn fx:id="tcFecha" prefWidth="150.0" text="Fecha" />          	
+          </columns>
+        </TableView>		
+		<Button fx:id="bNuevo" layoutX="450.0" layoutY="50.0" mnemonicParsing="false" onAction="#actionNuevo">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../Black/icon-synckeeplocal.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>
+    	<Button fx:id="bModificarNombre" layoutX="450.0" layoutY="100.0" mnemonicParsing="false" onAction="#actionModificarNombre">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../Black/icon-edit.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>
+    	<Button fx:id="bAgregarPrecio" layoutX="450.0" layoutY="150.0" mnemonicParsing="false" onAction="#actionAgregarPrecio">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../Black/icon-clipboardalt.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>
+		<Button fx:id="bGuardar" disable="true" layoutX="350.0" layoutY="145.0" mnemonicParsing="false" onAction="#actionGuardar" visible="false">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../Black/icon-ok-sign.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>   	
+    	<Button fx:id="bEliminar" layoutX="450.0" layoutY="250.0" mnemonicParsing="false" onAction="#actionEliminar">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../Black/icon-remove-sign.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>
+		<Button fx:id="bCancelar" layoutX="450.0" layoutY="350.0" mnemonicParsing="false" onAction="#actionCancelar">
+	     <graphic>
+	        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+	          <image>
+	            <Image url="@../Black/icon-pageback.png" />
+	          </image>
+	        </ImageView>
+	      </graphic>
+	    </Button>	    
+	    <Button fx:id="bGuardarNuevoPrecio" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#actionGuardarNuevoPrecio" visible="false">
+	     <graphic>
+	        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+	          <image>
+	            <Image url="@../Black/icon-plus-sign.png" />
+	          </image>
+	        </ImageView>
+	      </graphic>
+	    </Button>
+	    <Button fx:id="bEliminarPrecios" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#actionEliminarPrecios" visible="false">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../Black/icon-remove-sign.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>
 	</children>	
 	<stylesheets>
 		<URL value="@DarkTheme.css" />

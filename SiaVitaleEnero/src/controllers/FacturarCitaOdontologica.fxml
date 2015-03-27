@@ -11,7 +11,15 @@
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FacturarCitaOdontologicaController">
 	<children>
 		<Label fx:id="lFecha" layoutX="380.0" layoutY="10.0" styleClass="label-h2" text="" />
-		
+		<Button fx:id="bNuevaFactura" layoutX="820.0" layoutY="15.0" mnemonicParsing="false" onAction="#actionNuevaFactura" text="">
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="505.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../Black/icon-plus-sign.png" />
+                  </image>
+                </ImageView>
+            </graphic>
+    	</Button>
 		<SplitPane dividerPositions="0.3" focusTraversable="true" layoutX="10.0" layoutY="70" prefHeight="600.0" prefWidth="980.0">
 			<items>
 				<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" opacity="1.0" prefHeight="700.0" prefWidth="200.0" styleClass="background0">
@@ -32,7 +40,7 @@
 				                </ImageView>
 				            </graphic>
 				    	</Button>
-				    	<Label fx:id="lMsjPaciente" layoutX="10.0" layoutY="500.0" styleClass="label-h2" visible="false"/>
+				    	<Label fx:id="lMsjPaciente" layoutX="10.0" layoutY="500.0" styleClass="label-h2" visible="false"/>				    	
 					</children>
 				</AnchorPane>
 				<AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="550.0" styleClass="background0">
@@ -73,15 +81,15 @@
 						        </FXCollections>
 					     	</items>
 					    </ChoiceBox>
-					    <TableView fx:id="tvItems" layoutX="200.0" layoutY="200.0" prefHeight="200.0" prefWidth="452.0">
+					    <TableView fx:id="tvItems" layoutX="200.0" layoutY="200.0" prefHeight="200.0" prefWidth="458.0">
 				          <columns>
 				          	<TableColumn fx:id="tcDescripcionItem" prefWidth="350.0" text="Servicio Odontologico" />
-				          	<TableColumn fx:id="tcCostoItem" prefWidth="100.0" text="Costo" />
+				          	<TableColumn fx:id="tcCostoItem" prefWidth="95.0" text="Costo" />
 				          </columns>
 				        </TableView>
 				        <Label fx:id="lTotal" layoutX="430.0" layoutY="450.0" styleClass="label-h2" text="Total" />
-						<Label fx:id="lValorTotal" layoutX="490.0" layoutY="450.0" styleClass="label-h2" text="" />
-						<Button fx:id="bFacturar" disable="true" layoutX="430.0" layoutY="490.0" mnemonicParsing="false" onAction="#actionFacturar" text="">
+						<Label fx:id="lValorTotal" alignment="CENTER_RIGHT" layoutX="490.0" layoutY="450.0" styleClass="label-h2" text="" />
+						<Button fx:id="bFacturar" disable="true" layoutX="430.0" layoutY="510.0" mnemonicParsing="false" onAction="#actionFacturar" text="">
 				            <graphic>
 				                <ImageView fitHeight="33.0" fitWidth="37.0" layoutX="490.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
 				                  <image>
@@ -89,7 +97,16 @@
 				                  </image>
 				                </ImageView>
 				            </graphic>
-				    	</Button>									 
+				    	</Button>
+				    	<Button fx:id="bCancelar" layoutX="510.0" layoutY="550.0" mnemonicParsing="false" onAction="#actionCancelar" >
+					     <graphic>
+					        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					          <image>
+					            <Image url="@../Black/icon-pageback.png" />
+					          </image>
+					        </ImageView>
+					      </graphic>
+					    </Button>									 
 					</children>
 				</AnchorPane>
 			</items>

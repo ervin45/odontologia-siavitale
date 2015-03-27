@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Ventanas extends Application{
 	
-	private Stage stagePrincipal;
+	public static Stage stagePrincipal;
 	
     private AnchorPane rootPane;
 	
@@ -113,5 +113,9 @@ public class Ventanas extends Application{
 		}catch(Exception e){
 			
 		}
+	}
+	
+	public static Stage getStagePrincipal(){
+		return stagePrincipal;
 	}
 }

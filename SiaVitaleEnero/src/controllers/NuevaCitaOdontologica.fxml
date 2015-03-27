@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="400.0" styleClass="background2" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevaCitaOdontologicaController">
 	<children>
-		<Label fx:id="lPaciente" layoutX="60.0" layoutY="50.0" styleClass="label-h2" text="Paciente" />
+		<Label fx:id="lPaciente" layoutX="80.0" layoutY="50.0" styleClass="label-h2" text="Paciente" />
 		<ChoiceBox fx:id="cbPaciente" layoutX="180.0" layoutY="50.0" styleClass="label-h2">
 	      <items>
 	        <FXCollections fx:factory="observableArrayList">
