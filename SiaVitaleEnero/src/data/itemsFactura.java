@@ -13,7 +13,8 @@ public class itemsFactura {
 	private Factura factura;
 	private double iva;
 	private double monto;
-		
+	private String nombreSO;	
+	
 	@javax.persistence.Id
 	@GeneratedValue
 	public int getId() {
@@ -54,6 +55,10 @@ public class itemsFactura {
 	public void setMonto(double monto) {
 		this.monto = monto;
 	}
-	
-	
+	public String getNombreSO() {
+		return nombreSO;
+	}
+	public void setNombreSO(String nombreSO) {
+		this.nombreSO = nombreSO;
+	}	
 }

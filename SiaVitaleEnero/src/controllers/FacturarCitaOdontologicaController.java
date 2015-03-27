@@ -1,9 +1,25 @@
 package controllers;
+import groovy.model.DefaultTableModel;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,18 +38,19 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.util.regex.*;
 
 public class FacturarCitaOdontologicaController{	
 	
@@ -126,7 +143,12 @@ public class FacturarCitaOdontologicaController{
 	@FXML
 	private Label lMsjPaciente;
 	
+	@FXML
+	private Button bNuevaFactura;
+	
 	private PrecioServicioOdontologico precioSO = new PrecioServicioOdontologico();
+	
+	private List<itemsFactura> listaItems = new ArrayList<itemsFactura>();
 	
 	public FacturarCitaOdontologicaController(){	}
 		
@@ -207,6 +229,13 @@ public class FacturarCitaOdontologicaController{
 		    		ContextoCronograma.getInstance().setBanderaTablaEliminarItemSeleccionado(false);
 		    	}
 		}}); 
+				
+		tcCostoItem.setCellFactory(new Callback<TableColumn<PrecioServicioOdontologico, String>, TableCell<PrecioServicioOdontologico, String>>() {
+	        @Override
+	        public TableCell<PrecioServicioOdontologico, String> call(TableColumn<PrecioServicioOdontologico, String> param) {
+	            return new TableCellFormatCosto();
+	        }
+	    });
 		
 		Session sesion1 = openSesion();
 		Query queryResultDoctores = sesion1.createQuery("from ServicioOdontologico");	
@@ -220,8 +249,10 @@ public class FacturarCitaOdontologicaController{
 		cbServicioOdontologico.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2){
-				System.out.println("servicio odontologico: "+arg2.intValue());	
-				posicionarItemSeleccionado(arg2.intValue());
+				if (cbServicioOdontologico.getSelectionModel().getSelectedIndex() != -1){
+					System.out.println("servicio odontologico: "+arg2.intValue());	
+					posicionarItemSeleccionado(arg2.intValue());
+				}
 		}});			
 		
 		tfRIF.textProperty().addListener(new ChangeListener<String>(){
@@ -252,6 +283,15 @@ public class FacturarCitaOdontologicaController{
 		});	
 	}
 	
+	private class TableCellFormatCosto extends TableCell<PrecioServicioOdontologico, String>{
+	    @Override
+	    protected void updateItem(String item, boolean empty) {
+	        super.updateItem(item, empty); 
+	        this.setText(item);
+	        this.setAlignment(Pos.CENTER_RIGHT);
+	    }
+	}
+	
 	private void posicionarItemSeleccionado(int pos){
 		System.out.println("pos:  "+pos+"  "+serviciosOdontologicosListCB.get(pos).getNombre()+" "+serviciosOdontologicosListCB.get(pos).getId());
 		
@@ -268,9 +308,10 @@ public class FacturarCitaOdontologicaController{
 		
 		precioSOListItems.add(precioSO);
 		tvItems.setItems(precioSOListItems);
-				
-		lValorTotal.setText(String.valueOf(totalFactura));	
 		
+		DecimalFormat df = new DecimalFormat("", new DecimalFormatSymbols(Locale.getDefault()));
+		lValorTotal.setText(df.format(totalFactura));	
+		lValorTotal.setVisible(true);
 		validarBotonFacturar();
 	
 		tcDescripcionItem.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PrecioServicioOdontologico, String>, ObservableValue<String>>(){
@@ -282,7 +323,8 @@ public class FacturarCitaOdontologicaController{
 		tcCostoItem.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PrecioServicioOdontologico, String>, ObservableValue<String>>(){
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<PrecioServicioOdontologico, String> arg0) {
-				return new SimpleStringProperty(String.valueOf(arg0.getValue().getMonto()));
+				DecimalFormat df = new DecimalFormat("", new DecimalFormatSymbols(Locale.getDefault()));				
+				return new SimpleStringProperty(df.format(arg0.getValue().getMonto()));
 			}			
 		});			
 	}
@@ -309,7 +351,8 @@ public class FacturarCitaOdontologicaController{
 		
 		totalFactura -= precioSOListItems.get(posEliminar).getMonto();
 		precioSOListItems.remove(posEliminar);
-		lValorTotal.setText(String.valueOf(totalFactura));
+		DecimalFormat df = new DecimalFormat("", new DecimalFormatSymbols(Locale.getDefault()));
+		lValorTotal.setText(df.format(totalFactura));
 		
 		validarBotonFacturar();
 		
@@ -462,7 +505,10 @@ public class FacturarCitaOdontologicaController{
 //			guardar objeto de paciente-persona en el objeto de factura
 		}
 //		guardar el monto total en el objeto de factura		
-		objfactura.setMontoTotal(Double.parseDouble(lValorTotal.getText()));
+		System.out.println(" uno   "+lValorTotal.getText());
+		System.out.println(" dos "+totalFactura);		
+		
+		objfactura.setMontoTotal(totalFactura);
 		
 //		guardar el monto de iva en el objeto de factura
 //		objf.setIvaTotal(ivaTotal);
@@ -494,7 +540,7 @@ public class FacturarCitaOdontologicaController{
 		ObservableList<PrecioServicioOdontologico> lso = tvItems.getItems();
 		Iterator<PrecioServicioOdontologico> iteso = lso.iterator();		
 		System.out.println("cantidad de items "+lso.size());
-				
+		
 		while (iteso.hasNext()){
 			Session ses3 = openSesion();
 			objitem = new itemsFactura();
@@ -503,9 +549,79 @@ public class FacturarCitaOdontologicaController{
 			precio = iteso.next();
 			objitem.setMonto(precio.getMonto());
 			objitem.setServicioOdontologico(precio.getServicioOdontologico());	
+			objitem.setNombreSO(precio.getServicioOdontologico().getNombre());
 			ses3.save(objitem);
+			listaItems.add(objitem);
+		
 			closeSesion(ses3);
 		}
+		
+		System.out.println("VOY A IMPRIMIR!!!!!!");
+		imprimirFactura();
+	}
+	
+	public void imprimirFactura(){
+		DefaultTableModel datos;
+		
+		System.out.println("---------------");
+		System.out.println("objeto encabezado factura");
+//		System.out.print("id: "+objfactura.getId()+" /p: "+objfactura.getPersona().getNombres()+" /rs: "+objfactura.getRazonSocial()+" /it: "+objfactura.getIvaTotal()+" /mt: "+objfactura.getMontoTotal());		
+		System.out.println("\nobjetos items");
+				
+		Iterator<itemsFactura> itef = listaItems.iterator();
+				
+		while (itef.hasNext()){
+			itemsFactura it = new itemsFactura();
+			it = itef.next();
+			System.out.println("id: "+it.getId()+" /so: "+it.getServicioOdontologico().getNombre()+" /idf: "+it.getFactura().getId()+" /m: "+it.getMonto()+" /iva: "+it.getIva());
+		}
+		System.out.println("---------------");
+		
+		try{			
+			Map cabecera = new HashMap();
+			System.out.println("---------------2");
+			cabecera.put("id",""+objfactura.getId());
+			System.out.println("---------------3");
+			cabecera.put("fecha", "27/03/2015");
+			if (objfactura.getPersona()!=null){
+				cabecera.put("pacientenomape",""+objfactura.getPersona().getNombres()+" "+objfactura.getPersona().getApellidos());
+			}
+			System.out.println("---------------4");
+			
+			if (objfactura.getRazonSocial()!=null)
+				cabecera.put("razonsocial",""+objfactura.getRazonSocial().getRazonSocial());
+			System.out.println("---------------5 "+objfactura.getIvaTotal());
+			
+//			cabecera.put("totaliva", ""+objfactura.getIvaTotal());
+			System.out.println("---------------6");
+			cabecera.put("totalmonto", ""+objfactura.getMontoTotal());						
+			
+			System.out.println("ya cargue map");
+			JRBeanCollectionDataSource data = new JRBeanCollectionDataSource(listaItems);
+			JasperReport rfac = (JasperReport) JRLoader.loadObject(getClass().getClassLoader().getResource("reportes/reporte.jasper"));
+			JasperPrint pfac = JasperFillManager.fillReport(rfac, cabecera, data);
+	
+			System.out.println("Voy a export manager");
+			try {
+				JasperExportManager.exportReportToPdfFile(pfac,"C:/hibernate/resultado.pdf");
+			}catch (JRException exp){
+				System.out.println("Está abierto archivo de resultado. Debe cerrarlo para poderlo generar nuevamente!");
+			}
+			System.out.println("Despues de export manager");
+//			try {
+//				Runtime.getRuntime().exec("cmd /c start C:/hibernate/resultado.pdf");			
+//	//			File file = new File("c:/ticlab2/resultado.pdf");
+//	//			file.deleteOnExit();
+//				
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+			
+	//		JasperViewer.viewReport(pfac, false);
+		
+		}catch(JRException e1){
+			e1.printStackTrace();
+		}		
 	}
 	
 	private Session openSesion(){		
@@ -523,24 +639,27 @@ public class FacturarCitaOdontologicaController{
 		 this.ProgramaPrincipal = ProgramaPrincipal;
 	 }
 	
-//	@FXML
-//	private void actionAgregarItem(){
-//		System.out.println("agregar a tabla");
-//	}
+	@FXML
+	private void actionNuevaFactura(){
+		System.out.println("action nueva factura");
+		tfCedulaPaciente.setText("");
+		tfRazonSocial.setText("");
+		tfRIF.setText("");
+		tvItems.getItems().clear();
+		tvCitasSeleccionadas.getItems().clear();
+		tvCitas.getItems().clear();
+		DecimalFormat df = new DecimalFormat("0.00", new DecimalFormatSymbols(Locale.getDefault()));
+		lValorTotal.setText(df.format(0));lValorTotal.setVisible(false);
+		lValorRazonSocial.setText("");lValorRazonSocial.setVisible(false);
+		lRazonSocial.setText(""); lRazonSocial.setVisible(false);
+		cbServicioOdontologico.getSelectionModel().select(-1);
+	}
 	
-//	private void actionEliminarCita(){
-//		System.out.println("boton eliminar cita");	
-//		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
-//		ContextoCronograma.getInstance().setBanderaEliminarCita(true);
-//		Stage stage = (Stage) bEliminarCita.getScene().getWindow();
-//		stage.close();
-//	}
-//	
-//	@FXML
-//	private void actionCancelar(){
-//		System.out.println("boton cancelar cronograma cita");	
-//		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
-//		Stage stage = (Stage) bCancelar.getScene().getWindow();
-//		stage.close();		
-//	}
+	@FXML
+	private void actionCancelar(){
+		System.out.println("boton cancelar cronograma cita");	
+		ContextoCronograma.getInstance().setBanderaVentEliminarCita(false);
+		Stage stage = (Stage) bNuevaFactura.getScene().getWindow();
+		stage.close();		
+	}
 }

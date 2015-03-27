@@ -123,7 +123,7 @@
 }
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent;    
 }
 
 .table-view .column-header, .table-view .filler {
@@ -141,7 +141,7 @@
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI" , Light;
     -fx-text-fill: white;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
     -fx-opacity: 1;
 }
 
